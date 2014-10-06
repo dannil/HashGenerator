@@ -13,7 +13,7 @@
         }
         
         $ripemd = new HashRIPEMD();
-        echo $ripemd->getRIPEMD320Hash("Hello World!");
+        echo $ripemd->getRIPEMD320Hash("See ya!");
         
         ?>
     </body>
