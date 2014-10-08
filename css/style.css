@@ -55,5 +55,31 @@ table {
 /* Regular CSS */
 
 html {
-    background-color: #F3F3F3;
+    background-color: #FAFAFA;
+}
+
+#container {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    height: 300px;
+    width: 500px;
+    border: 1px solid #CCC;
+    background-color: #FFF;
+}
+#center_container {
+    position: relative;
+    margin: 14px;
+}
+.button {
+    margin-top: 6px;
+}
+.salt {
+    display: none;
+    margin-top: 6px;
+    margin-bottom: 0px;
+}
+
+p {
+    margin: 1px;
 }
