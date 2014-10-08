@@ -24,7 +24,7 @@ if (isset($_POST)) {
         $_SESSION['salt'] = $salt;
         if (isset($_POST['placeSaltAt'])) {
             if ($_POST['placeSaltAt'] == 'beginning') {
-                $stringToHash = $salt + $stringToHash;
+                echo $stringToHash = $salt . $stringToHash;
             }
             else if ($_POST['placeSaltAt'] == 'end') {
                 $stringToHash .= $salt;
