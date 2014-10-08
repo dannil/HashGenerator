@@ -2,7 +2,7 @@
     
     session_start();
     
-    require_once('classes/Hash.class.php');
+    require_once('php/classes/Hash.class.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@
             </div>
             <div class="border"></div>
             <div id="formcontainer">
-                <form method="POST" action="processing/indexProcessing.php">
+                <form method="POST" action="php/processing/indexProcessing.php">
                     <p>String to hash <input type="text" name="stringToHash" size="46"></p>
                     <p>Use salt? <input type="checkbox" name="saltCheckbox" value="salt"></p>
                     <div id="salt">
@@ -64,7 +64,7 @@
                 ?>
             </div>
             <div id="footer">
-                <p>This is an open source project; please visit <a href="http://github.com/dannil/HashGenerator">GitHub</a> for the source code.</p>
+                <p>This is an open source project; please visit <a href="https://github.com/dannil/HashGenerator">GitHub</a> for the source code.</p>
             </div>
         </div>
         
