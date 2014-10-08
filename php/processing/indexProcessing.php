@@ -16,23 +16,25 @@ function in_array_r($needle, $haystack, $strict = false) {
     return false;
 }
 
-if (isset($_POST)) {
-    $stringToHash = $_POST['stringToHash'];
+$stringToHash = filter_input(INPUT_POST, 'stringToHash', FILTER_SANITIZE_STRING);
+if (isset($stringToHash)) {
     $SESSION['stringToHash'] = $stringToHash;
-    if (isset($_POST['saltCheckbox'])) {
-        $salt = $_POST['salt'];
+    $saltCheckbox = filter_input(INPUT_POST, 'saltCheckbox', FILTER_SANITIZE_STRING);
+    if (isset($saltCheckbox)) {
+        $salt = filter_input(INPUT_POST, 'salt', FILTER_SANITIZE_STRING);
         $_SESSION['salt'] = $salt;
-        if (isset($_POST['placeSaltAt'])) {
-            if ($_POST['placeSaltAt'] == 'beginning') {
+        $placeSaltAt = filter_input(INPUT_POST, 'placeSaltAt', FILTER_SANITIZE_STRING);
+        if (isset($placeSaltAt)) {
+            if ($placeSaltAt == 'beginning') {
                 echo $stringToHash = $salt . $stringToHash;
             }
-            else if ($_POST['placeSaltAt'] == 'end') {
+            else if ($placeSaltAt == 'end') {
                 $stringToHash .= $salt;
             }
         }
     }
     
-    $algorithm = strtoupper($_POST['algorithm']);
+    $algorithm = strtoupper(filter_input(INPUT_POST, 'algorithm', FILTER_SANITIZE_STRING));
     
     $hashObj = new Hash();
     $mdArray = $hashObj->getMDArray();
@@ -89,7 +91,7 @@ if (isset($_POST)) {
         
         $_SESSION['hash'] = $hash;
         
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER', FILTER_SANITIZE_STRING));
     } else {
         die("Algorithm doesn't exist");
     }
