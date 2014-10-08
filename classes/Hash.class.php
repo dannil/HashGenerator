@@ -18,7 +18,7 @@ class Hash {
         $this->mdArray = array("MD5");
         $this->ripemdArray = array("RIPEMD128", "RIPEMD160", "RIPEMD256", "RIPEMD320");
         $this->shaArray = array("SHA1", "SHA256", "SHA384", "SHA512");
-        $this->allArrays = array($this->mdArray, $this->ripemdArray, $this->ripemdArray);
+        $this->allArrays = array($this->mdArray, $this->ripemdArray, $this->shaArray);
     }
     
     public function getMDArray() {

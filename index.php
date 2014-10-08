@@ -1,7 +1,8 @@
 <?php
     
     session_start();
-
+    
+    require_once('classes/Hash.class.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,16 +23,25 @@
                 <form method="POST" action="processing/indexProcessing.php">
                     <p>String to hash <input type="text" name="stringToHash" size="46"></p>
                     <p>Use salt? <input type="checkbox" name="saltCheckbox" value="salt"></p>
-                    <div class="salt">
+                    <div id="salt">
                         <p>Salt <input type="text" name="salt" size="55"></p>
                         <p>Place salt at <input type="radio" name="placeSaltAt" value="beginning" checked>beginning 
                             <input type="radio" name="placeSaltAt" value="end">end</p>
                     </div>
                     <p>Hashing algorithm
-                        <select>
-                            <option>
-
-                            </option>
+                        <select name="algorithm">
+                            <?php
+                            $hashObj = new Hash();
+                            $algos = $hashObj->getAllArrays();
+                            foreach ($algos as $algo) {
+                                while (list($key, $value) = each($algo)) {
+                                    if ($value == "SHA256") {
+                                        echo '<option selected="selected" value="' . strtolower($value) . '">' . $value . '</option>';
+                                    }
+                                    echo '<option value="' . strtolower($value) . '">' . $value . '</option>';
+                                }
+                            }
+                            ?>
                         </select>
                     </p>
                     <div class="button">

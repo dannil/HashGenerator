@@ -32,12 +32,14 @@ if (isset($_POST)) {
         }
     }
     
-    $algorithm = "RIPEMD256";
+    $algorithm = strtoupper($_POST['algorithm']);
     
-    $mdArray = array("MD5");
-    $ripemdArray = array("RIPEMD128", "RIPEMD160", "RIPEMD256", "RIPEMD320");
-    $shaArray = array("SHA1", "SHA256", "SHA384", "SHA512");
-    $allArrays = array($mdArray, $ripemdArray, $shaArray);
+    $hashObj = new Hash();
+    $mdArray = $hashObj->getMDArray();
+    $ripemdArray = $hashObj->getRIPEMDArray();
+    $shaArray = $hashObj->getSHAArray();
+    
+    $allArrays = $hashObj->getAllArrays();
     
     if (in_array_r($algorithm, $allArrays)) {
         if (in_array($algorithm, $mdArray)) {
