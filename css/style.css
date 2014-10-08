@@ -65,7 +65,7 @@ html {
     left: 0; 
     bottom: 0; 
     right: 0;
-    height: 436px;
+    height: 470px;
     width: 500px;
     border: 1px solid #CCC;
     background-color: #FFF;
@@ -111,12 +111,11 @@ html {
 .button {
     margin-top: 6px;
 }
-.salt {
+#salt {
     display: none;
     margin-top: 6px;
     margin-bottom: 0px;
 }
-
 textarea {
     resize: none;
 }
