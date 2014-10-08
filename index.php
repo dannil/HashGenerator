@@ -5,15 +5,7 @@
         <title>HashGenerator</title>
         <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $('input[type="checkbox"]').click(function(){
-                    if($(this).attr("value")=="salt"){
-                        $(".salt").toggle();
-                    }
-                });
-            });
-        </script>
+        <script type="text/javascript" src="js/showSalt.js"></script>
     </head>
     <body>
         <div id="container">
@@ -28,7 +20,7 @@
                     <div class="salt">
                         <p>Salt <input type="text" name="salt" size="55"></p>
                         <p>Place salt at <input type="radio" name="placeSaltAt" value="beginning" checked>beginning 
-                                         <input type="radio" name="placeSaltAt" value="end">end
+                            <input type="radio" name="placeSaltAt" value="end">end</p>
                     </div>
                     <div class="button">
                         <p><input type="submit" value="Hash string"></p>
