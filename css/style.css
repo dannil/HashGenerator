@@ -67,7 +67,18 @@ html {
     border: 1px solid #CCC;
     background-color: #FFF;
 }
-#center_container {
+#header {
+    position: relative;
+    margin: 14px;
+}
+#header h1 {
+    font-size: 22px;
+}
+.border {
+    position: relative;
+    border-bottom: 1px solid #CCC;
+}
+#contentcontainer {
     position: relative;
     margin: 14px;
 }
