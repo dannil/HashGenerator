@@ -1,3 +1,8 @@
+<?php
+    
+    session_start();
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,6 +31,14 @@
                         <p><input type="submit" value="Hash string"></p>
                     </div>
                 </form>
+                
+                <?php
+                
+                if (isset($_SESSION['hash'])) {
+                    echo $_SESSION['hash'];
+                }
+                
+                ?>
                 
                 <?php
 
