@@ -27,10 +27,18 @@
                         <p>Place salt at <input type="radio" name="placeSaltAt" value="beginning" checked>beginning 
                             <input type="radio" name="placeSaltAt" value="end">end</p>
                     </div>
+                    <p>Hashing algorithm
+                        <select>
+                            <option>
+
+                            </option>
+                        </select>
+                    </p>
                     <div class="button">
                         <p><input type="submit" value="Hash string"></p>
                     </div>
                 </form>
+                
             </div>
             <div class="border"></div>
             <div id="result">

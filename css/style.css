@@ -61,11 +61,11 @@ html {
 #container {
     margin: auto;
     position: absolute;
-    top: 0; 
+    top: -200px; 
     left: 0; 
     bottom: 0; 
     right: 0;
-    height: 400px;
+    height: 436px;
     width: 500px;
     border: 1px solid #CCC;
     background-color: #FFF;
@@ -84,6 +84,9 @@ html {
 #formcontainer {
     position: relative;
     margin: 14px;
+}
+#formcontainer p {
+    margin-top: 6px;
 }
 #result {
     position: relative;
