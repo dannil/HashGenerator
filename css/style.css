@@ -61,7 +61,10 @@ html {
 #container {
     margin: auto;
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0;
     height: 400px;
     width: 500px;
     border: 1px solid #CCC;
@@ -78,9 +81,29 @@ html {
     position: relative;
     border-bottom: 1px solid #CCC;
 }
-#contentcontainer {
+#formcontainer {
     position: relative;
     margin: 14px;
+}
+#result {
+    position: relative;
+    margin: 14px;
+}
+#result p {
+    margin-bottom: 6px;
+}
+#footer {
+    margin-top: 14px;
+    border-top: 1px solid #CCC;
+    position: absolute;
+    font-size: 10px;
+    bottom: 0;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+}
+#footer p {
+    text-align: center;
 }
 .button {
     margin-top: 6px;
@@ -91,6 +114,6 @@ html {
     margin-bottom: 0px;
 }
 
-p {
-    margin: 1px;
+textarea {
+    resize: none;
 }

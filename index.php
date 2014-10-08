@@ -18,7 +18,7 @@
                 <h1>Hash Generator</h1>
             </div>
             <div class="border"></div>
-            <div id="contentcontainer">
+            <div id="formcontainer">
                 <form method="POST" action="processing/indexProcessing.php">
                     <p>String to hash <input type="text" name="stringToHash" size="46"></p>
                     <p>Use salt? <input type="checkbox" name="saltCheckbox" value="salt"></p>
@@ -31,29 +31,24 @@
                         <p><input type="submit" value="Hash string"></p>
                     </div>
                 </form>
-                
+            </div>
+            <div class="border"></div>
+            <div id="result">
+                <p>Result</p>
                 <?php
-                
-                if (isset($_SESSION['hash'])) {
-                    echo $_SESSION['hash'];
-                }
-                
-                ?>
-                
-                <?php
+                    echo '<textarea rows="9" cols="56">';
 
-                function __autoload($classname) {
-                    require_once('classes/' . $classname . '.class.php');
-                }
+                        if(isset($_SESSION['hash'])) {
+                            echo $_SESSION['hash']; 
+                        }
 
-                $ripemd = new HashRIPEMD();
-                //echo "<p>" . $ripemd->getRIPEMD320Hash("See ya!") . "</p>";
-
+                    echo '</textarea>';
                 ?>
             </div>
-
+            <div id="footer">
+                <p>This is an open source project; please visit <a href="http://github.com/dannil/HashGenerator">GitHub</a> for the source code.</p>
+            </div>
         </div>
-       
         
     </body>
 </html>
