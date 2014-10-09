@@ -64,15 +64,16 @@
             <div id="result">
                 <p>Result</p>
                 <?php
-                    echo '<textarea rows="9" cols="56">';
+                    echo '<textarea>';
 
-                        if(isset($session)) {
+                        if(isset($session['hash'])) {
                             echo $session['hash']; 
                         }
 
                     echo '</textarea>';
                 ?>
             </div>
+            <div class="border"></div>
             <div id="footer">
                 <p>This is an open source project; please visit <a href="https://github.com/dannil/HashGenerator">GitHub</a> for the source code.</p>
             </div>

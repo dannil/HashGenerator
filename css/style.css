@@ -60,12 +60,7 @@ html {
 
 #container {
     margin: auto;
-    position: absolute;
-    top: -200px; 
-    left: 0; 
-    bottom: 0; 
-    right: 0;
-    height: 470px;
+    margin-top: 160px;
     width: 500px;
     border: 1px solid #CCC;
     background-color: #FFF;
@@ -78,7 +73,6 @@ html {
     font-size: 22px;
 }
 .border {
-    position: relative;
     border-bottom: 1px solid #CCC;
 }
 #formcontainer {
@@ -89,7 +83,6 @@ html {
     margin-top: 6px;
 }
 #result {
-    position: relative;
     margin: 14px;
 }
 #result p {
@@ -97,13 +90,10 @@ html {
 }
 #footer {
     margin-top: 14px;
-    border-top: 1px solid #CCC;
-    position: absolute;
     font-size: 10px;
     bottom: 0;
-    width: 100%;
     height: 24px;
-    line-height: 24px;
+    line-height: 14px;
 }
 #footer p {
     text-align: center;
@@ -118,4 +108,6 @@ html {
 }
 textarea {
     resize: none;
+    width: 99%;
+    min-height: 100px;
 }
