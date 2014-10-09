@@ -1,5 +1,6 @@
 <?php
 
+unset($_SESSION);
 session_start();
 
 function __autoload($classname) {
@@ -18,15 +19,17 @@ function in_array_r($needle, $haystack, $strict = false) {
 
 $stringToHash = filter_input(INPUT_POST, 'stringToHash', FILTER_SANITIZE_STRING);
 if (isset($stringToHash)) {
-    $SESSION['stringToHash'] = $stringToHash;
+    $_SESSION['stringToHash'] = $stringToHash;
     $saltCheckbox = filter_input(INPUT_POST, 'saltCheckbox', FILTER_SANITIZE_STRING);
     if (isset($saltCheckbox)) {
+        $_SESSION['saltCheckbox'] = $saltCheckbox;
         $salt = filter_input(INPUT_POST, 'salt', FILTER_SANITIZE_STRING);
         $_SESSION['salt'] = $salt;
         $placeSaltAt = filter_input(INPUT_POST, 'placeSaltAt', FILTER_SANITIZE_STRING);
         if (isset($placeSaltAt)) {
+            $_SESSION['placeSaltAt'] = $placeSaltAt;
             if ($placeSaltAt == 'beginning') {
-                echo $stringToHash = $salt . $stringToHash;
+                $stringToHash = $salt . $stringToHash;
             }
             else if ($placeSaltAt == 'end') {
                 $stringToHash .= $salt;
@@ -35,6 +38,7 @@ if (isset($stringToHash)) {
     }
     
     $algorithm = strtoupper(filter_input(INPUT_POST, 'algorithm', FILTER_SANITIZE_STRING));
+    $_SESSION['algorithm'] = $algorithm;
     
     $hashObj = new Hash();
     $mdArray = $hashObj->getMDArray();

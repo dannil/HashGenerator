@@ -3,6 +3,11 @@
     session_start();
     
     require_once('php/classes/Hash.class.php');
+    
+    if (isset($_SESSION)) {
+        $session = $_SESSION;
+    }
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +26,7 @@
             <div class="border"></div>
             <div id="formcontainer">
                 <form method="POST" action="php/processing/indexProcessing.php">
-                    <p>String to hash <input type="text" name="stringToHash" size="46"></p>
+                    <p>String to hash <input type="text" name="stringToHash" size="46"<?php if (isset($session['salt'])) { echo 'value="' . $session['stringToHash'] . '"'; } ?>></p>
                     <p>Use salt? <input type="checkbox" name="saltCheckbox" value="salt"></p>
                     <div id="salt">
                         <p>Salt <input type="text" name="salt" size="55"></p>
@@ -35,10 +40,15 @@
                             $algos = $hashObj->getAllArrays();
                             foreach ($algos as $algo) {
                                 while (list($key, $value) = each($algo)) {
-                                    if ($value == "SHA256") {
-                                        echo '<option selected="selected" value="' . strtolower($value) . '">' . $value . '</option>';
-                                    }
-                                    echo '<option value="' . strtolower($value) . '">' . $value . '</option>';
+                                        if (!isset($session['algorithm']) && $value == "SHA256") {
+                                            echo '<option selected="selected" value="' . strtolower($value) . '">' . $value . '</option>';
+                                        }
+                                        else if (isset($session['algorithm']) && $value == $session['algorithm']) {
+                                            echo '<option selected="selected" value="' . strtolower($value) . '">' . $value . '</option>';
+                                        }
+                                        else {
+                                            echo '<option value="' . strtolower($value) . '">' . $value . '</option>';
+                                        }
                                 }
                             }
                             ?>
@@ -56,8 +66,8 @@
                 <?php
                     echo '<textarea rows="9" cols="56">';
 
-                        if(isset($_SESSION['hash'])) {
-                            echo $_SESSION['hash']; 
+                        if(isset($session)) {
+                            echo $session['hash']; 
                         }
 
                     echo '</textarea>';
