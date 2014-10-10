@@ -24,7 +24,7 @@ class Hash {
     }
     
     /* Credits to Tim (http://stackoverflow.com/users/698511/tim) */
-    function multiKeyExists($array, $key) {
+    function multiKeyExists($key, $array) {
         if (array_key_exists($key, $array)) {
             return true;
         }
@@ -60,7 +60,7 @@ class Hash {
     }
     
     public function getHash($input, $algorithm) {
-        if ($this->multiKeyExists($this->allArrays, $algorithm)) {
+        if ($this->multiKeyExists($algorithm, $this->allArrays)) {
             if (array_key_exists($algorithm, $this->mdArray)) {
                 return $this->getMDHash($input, $algorithm);
             }
