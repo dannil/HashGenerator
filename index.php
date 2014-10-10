@@ -39,14 +39,14 @@
                             $algos = $hashObj->getAllArrays();
                             foreach ($algos as $algo) {
                                 while (list($key, $value) = each($algo)) {
-                                    if (!isset($session['algorithm']) && $value == "sha256") {
-                                        echo '<option selected="selected" value="' . strtolower($value) . '">' . $value . '</option>';
+                                    if (!isset($session['algorithm']) && $key == "sha256") {
+                                        echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
                                     }
-                                    else if (isset($session['algorithm']) && $value == $session['algorithm']) {
-                                        echo '<option selected="selected" value="' . strtolower($value) . '">' . $value . '</option>';
+                                    else if (isset($session['algorithm']) && $key == $session['algorithm']) {
+                                        echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
                                     }
                                     else {
-                                        echo '<option value="' . strtolower($value) . '">' . $value . '</option>';
+                                        echo '<option value="' . $key . '">' . $value . '</option>';
                                     }
                                 }
                             }

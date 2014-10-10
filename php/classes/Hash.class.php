@@ -16,11 +16,27 @@ class Hash {
     private $allArrays;
     
     public function __construct() {
-        $this->mdArray = array("md5");
-        $this->ripemdArray = array("ripemd128", "ripemd160", "ripemd256", "ripemd320");
-        $this->shaArray = array("sha1", "sha256", "sha384", "sha512");
-        $this->tigerArray = array("tiger128", "tiger160", "tiger192");
+        $this->mdArray = array("md5" => "MD5");
+        $this->ripemdArray = array("ripemd128" => "RIPEMD128", "ripemd160" => "RIPEMD160", "ripemd256" => "RIPEMD256", "ripemd320" => "RIPEMD320");
+        $this->shaArray = array("sha1" => "SHA1", "sha256" => "SHA256", "sha384" => "SHA384", "sha512" => "SHA512");
+        $this->tigerArray = array("tiger128" => "Tiger128", "tiger160" => "Tiger160", "tiger192" => "Tiger192");
         $this->allArrays = array($this->mdArray, $this->ripemdArray, $this->shaArray, $this->tigerArray);
+    }
+    
+    /* Credits to Tim (http://stackoverflow.com/users/698511/tim) */
+    function multiKeyExists($array, $key) {
+        if (array_key_exists($key, $array)) {
+            return true;
+        }
+        foreach ($array as $k=>$v) {
+            if (!is_array($v)) {
+                continue;
+            }
+            if (array_key_exists($key, $v)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     public function getMDArray() {
@@ -44,19 +60,17 @@ class Hash {
     }
     
     public function getHash($input, $algorithm) {
-        echo $algorithm;
-        if (in_array_r($algorithm, $this->allArrays)) {
-            echo "hej";
-            if (in_array($algorithm, $this->mdArray)) {
+        if ($this->multiKeyExists($this->allArrays, $algorithm)) {
+            if (array_key_exists($algorithm, $this->mdArray)) {
                 return $this->getMDHash($input, $algorithm);
             }
-            if (in_array($algorithm, $this->ripemdArray)) {
+            if (array_key_exists($algorithm, $this->ripemdArray)) {
                 return $this->getRIPEMDHash($input, $algorithm);
             }
-            if (in_array($algorithm, $this->shaArray)) {
+            if (array_key_exists($algorithm, $this->shaArray)) {
                 return $this->getSHAHash($input, $algorithm);
             }
-            if (in_array($algorithm, $this->tigerArray)) {
+            if (array_key_exists($algorithm, $this->tigerArray)) {
                 return $this->getTigerHash($input, $algorithm);
             }
         } else {
