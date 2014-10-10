@@ -1,7 +1,5 @@
 <?php
 
-namespace Hash;
-
 /**
  * Description of HashMD
  *

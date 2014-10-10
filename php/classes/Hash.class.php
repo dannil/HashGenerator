@@ -1,7 +1,5 @@
 <?php
 
-namespace Hash;
-
 /**
  * Description of Hash
  *
@@ -25,37 +23,53 @@ class Hash {
         $this->allArrays = array($this->mdArray, $this->ripemdArray, $this->shaArray, $this->tigerArray);
     }
     
-    public function getHash($input, $algorithm) {
-        if (in_array_r($algorithm, $allArrays)) {
-            if (in_array($algorithm, $mdArray)) {
-                return $this->getMDHash($input, $algorithm);
-            }
-            if (in_array($algorithm, $ripemdArray)) {
-                return $this->getRIPEMDHash($input, $algorithm);
-            }
-            if (in_array($algorithm, $shaArray)) {
-                return $this->getSHAHAsh($input, $algorithm);
-            }
-        }
-    }
-    
     public function getMDArray() {
         return $this->mdArray;
-    }
-    
-    public function getMDHash($input, $algorithm) {
-        $hashFamily = new HashMD();
-        switch ($algorithm) {
-            case "MD5":
-                return $hashFamily->getMD5Hash($input);
-        }
     }
     
     public function getRIPEMDArray() {
         return $this->ripemdArray;
     }
     
+    public function getSHAArray() {
+        return $this->shaArray;
+    }
+    
+    public function getTigerArray() {
+        return $this->tigerArray;
+    }
+    
+    public function getAllArrays() {
+        return $this->allArrays;
+    }
+    
+    public function getHash($input, $algorithm) {
+        if (in_array_r($algorithm, $this->allArrays)) {
+            if (in_array($algorithm, $this->mdArray)) {
+                return $this->getMDHash($input, $algorithm);
+            }
+            if (in_array($algorithm, $this->ripemdArray)) {
+                return $this->getRIPEMDHash($input, $algorithm);
+            }
+            if (in_array($algorithm, $this->shaArray)) {
+                return $this->getSHAHash($input, $algorithm);
+            }
+        } else {
+            die("Invalid algorithm");
+        }
+    }
+    
+    public function getMDHash($input, $algorithm) {
+        require_once('../classes/HashMD.class.php');
+        $hashFamily = new HashMD();
+        switch ($algorithm) {
+            case "MD5":
+                return $hashFamily->getMD5Hash($input);
+        }
+    }
+
     public function getRIPEMDHash($input, $algorithm) {
+        require_once('../classes/HashRIPEMD.class.php');
         $hashFamily = new HashRIPEMD();
         switch ($algorithm) {
             case "RIPEMD128":
@@ -69,11 +83,8 @@ class Hash {
         }
     }
     
-    public function getSHAArray() {
-        return $this->shaArray;
-    }
-    
     public function getSHAHash($input, $algorithm) {
+        require_once('../classes/HashSHA.class.php');
         $hashFamily = new HashSHA();
         switch ($algorithm) {
             case "SHA1":
@@ -85,14 +96,6 @@ class Hash {
             case "SHA512":
                 return $hashFamily->getSHA512Hash($input);
         }
-    }
-    
-    public function getTigerArray() {
-        return $this->tigerArray;
-    }
-    
-    public function getAllArrays() {
-        return $this->allArrays;
     }
     
 }

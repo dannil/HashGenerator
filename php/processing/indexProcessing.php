@@ -1,11 +1,9 @@
 <?php
 
+require_once('../classes/Hash.class.php');
+
 unset($_SESSION);
 session_start();
-
-function __autoload($classname) {
-    require_once('../classes/' . $classname . '.class.php');
-}
 
 /* Credits to elusive (http://stackoverflow.com/users/427328/elusive) */
 function in_array_r($needle, $haystack, $strict = false) {
@@ -41,64 +39,8 @@ if (isset($stringToHash)) {
     $_SESSION['algorithm'] = $algorithm;
     
     $hashObj = new Hash();
-    $mdArray = $hashObj->getMDArray();
-    $ripemdArray = $hashObj->getRIPEMDArray();
-    $shaArray = $hashObj->getSHAArray();
-    
-    $allArrays = $hashObj->getAllArrays();
-    
-    if (in_array_r($algorithm, $allArrays)) {
-        if (in_array($algorithm, $mdArray)) {
-            $hashFamily = new HashMD();
-            switch ($algorithm) {
-                case "MD5":
-                    $hash = $hashFamily->getMD5Hash($stringToHash);
-                    break;
-            }
-        }
-
-        if (in_array($algorithm, $ripemdArray)) {
-            $hashFamily = new HashRIPEMD();
-            switch ($algorithm) {
-                case "RIPEMD128":
-                    $hash = $hashFamily->getRIPEMD128Hash($stringToHash);
-                    break;
-                case "RIPEMD160":
-                    $hash = $hashFamily->getRIPEMD160Hash($stringToHash);
-                    break;
-                case "RIPEMD256":
-                    $hash = $hashFamily->getRIPEMD256Hash($stringToHash);
-                    break;
-                case "RIPEMD320":
-                    $hash = $hashFamily->getRIPEMD320Hash($stringToHash);
-                    break;
-            }
-        }
-
-        if (in_array($algorithm, $shaArray)) {
-            $hashFamily = new HashSHA();
-            switch ($algorithm) {
-                case "SHA1":
-                    $hash = $hashFamily->getSHA1Hash($stringToHash);
-                    break;
-                case "SHA256":
-                    $hash = $hashFamily->getSHA256Hash($stringToHash);
-                    break;
-                case "SHA384":
-                    $hash = $hashFamily->getSHA384Hash($stringToHash);
-                    break;
-                case "SHA512":
-                    $hash = $hashFamily->getSHA512Hash($stringToHash);
-                    break;
-            }
-        }
-        
-        $_SESSION['hash'] = $hash;
-        
-        header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER', FILTER_SANITIZE_STRING));
-    } else {
-        die("Algorithm doesn't exist");
-    }
+    $_SESSION['hash'] = $hashObj->getHash($stringToHash, $algorithm);
+    header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER', FILTER_SANITIZE_STRING));
 }
 else {
     die("Unallowed access method");
