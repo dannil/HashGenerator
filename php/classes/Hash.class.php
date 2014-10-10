@@ -16,10 +16,10 @@ class Hash {
     private $allArrays;
     
     public function __construct() {
-        $this->mdArray = array("MD5");
-        $this->ripemdArray = array("RIPEMD128", "RIPEMD160", "RIPEMD256", "RIPEMD320");
-        $this->shaArray = array("SHA1", "SHA256", "SHA384", "SHA512");
-        $this->tigerArray = array("Tiger128", "Tiger160", "Tiger192");
+        $this->mdArray = array("md5");
+        $this->ripemdArray = array("ripemd128", "ripemd160", "ripemd256", "ripemd320");
+        $this->shaArray = array("sha1", "sha256", "sha384", "sha512");
+        $this->tigerArray = array("tiger128", "tiger160", "tiger192");
         $this->allArrays = array($this->mdArray, $this->ripemdArray, $this->shaArray, $this->tigerArray);
     }
     
@@ -44,7 +44,9 @@ class Hash {
     }
     
     public function getHash($input, $algorithm) {
+        echo $algorithm;
         if (in_array_r($algorithm, $this->allArrays)) {
+            echo "hej";
             if (in_array($algorithm, $this->mdArray)) {
                 return $this->getMDHash($input, $algorithm);
             }
@@ -53,6 +55,9 @@ class Hash {
             }
             if (in_array($algorithm, $this->shaArray)) {
                 return $this->getSHAHash($input, $algorithm);
+            }
+            if (in_array($algorithm, $this->tigerArray)) {
+                return $this->getTigerHash($input, $algorithm);
             }
         } else {
             die("Invalid algorithm");
@@ -63,7 +68,7 @@ class Hash {
         require_once('../classes/HashMD.class.php');
         $hashFamily = new HashMD();
         switch ($algorithm) {
-            case "MD5":
+            case "md5":
                 return $hashFamily->getMD5Hash($input);
         }
     }
@@ -72,13 +77,13 @@ class Hash {
         require_once('../classes/HashRIPEMD.class.php');
         $hashFamily = new HashRIPEMD();
         switch ($algorithm) {
-            case "RIPEMD128":
+            case "ripemd128":
                 return $hashFamily->getRIPEMD128Hash($input);
-            case "RIPEMD160":
+            case "ripemd160":
                 return $hashFamily->getRIPEMD160Hash($input);
-            case "RIPEMD256":
+            case "ripemd256":
                 return $hashFamily->getRIPEMD256Hash($input);
-            case "RIPEMD320":
+            case "ripemd320":
                 return $hashFamily->getRIPEMD320Hash($input);
         }
     }
@@ -87,14 +92,27 @@ class Hash {
         require_once('../classes/HashSHA.class.php');
         $hashFamily = new HashSHA();
         switch ($algorithm) {
-            case "SHA1":
+            case "sha1":
                 return $hashFamily->getSHA1Hash($input);
-            case "SHA256":
+            case "sha256":
                 return $hashFamily->getSHA256Hash($input);
-            case "SHA384":
+            case "sha384":
                 return $hashFamily->getSHA384Hash($input);
-            case "SHA512":
+            case "sha512":
                 return $hashFamily->getSHA512Hash($input);
+        }
+    }
+    
+    public function getTigerHash($input, $algorithm) {
+        require_once('../classes/HashTiger.class.php');
+        $hashFamily = new HashTiger();
+        switch ($algorithm) {
+            case "tiger128":
+                return $hashFamily->getTiger128Hash($input);
+            case "tiger160":
+                return $hashFamily->getTiger160Hash($input);
+            case "tiger192":
+                return $hashFamily->getTiger192Hash($input);
         }
     }
     

@@ -21,7 +21,7 @@
     <body>
         <div id="container">
             <div id="header">
-                <h1>Hash Generator</h1>
+                <h1>HashGenerator</h1>
             </div>
             <div class="border"></div>
             <div id="formcontainer">
@@ -39,7 +39,7 @@
                             $algos = $hashObj->getAllArrays();
                             foreach ($algos as $algo) {
                                 while (list($key, $value) = each($algo)) {
-                                    if (!isset($session['algorithm']) && $value == "SHA256") {
+                                    if (!isset($session['algorithm']) && $value == "sha256") {
                                         echo '<option selected="selected" value="' . strtolower($value) . '">' . $value . '</option>';
                                     }
                                     else if (isset($session['algorithm']) && $value == $session['algorithm']) {

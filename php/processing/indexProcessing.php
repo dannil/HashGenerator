@@ -35,7 +35,7 @@ if (isset($stringToHash)) {
         }
     }
     
-    $algorithm = strtoupper(filter_input(INPUT_POST, 'algorithm', FILTER_SANITIZE_STRING));
+    $algorithm = filter_input(INPUT_POST, 'algorithm', FILTER_SANITIZE_STRING);
     $_SESSION['algorithm'] = $algorithm;
     
     $hashObj = new Hash();
