@@ -57,7 +57,6 @@ table {
 html {
     background-color: #FAFAFA;
 }
-
 #container {
     margin: auto;
     margin-top: 160px;
@@ -66,7 +65,6 @@ html {
     background-color: #FFF;
 }
 #header {
-    position: relative;
     margin: 14px;
 }
 #header h1 {
@@ -76,7 +74,6 @@ html {
     border-bottom: 1px solid #CCC;
 }
 #formcontainer {
-    position: relative;
     margin: 14px;
 }
 #formcontainer p {
