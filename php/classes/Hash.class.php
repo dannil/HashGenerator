@@ -24,15 +24,15 @@ class Hash {
     }
     
     /* Credits to Tim (http://stackoverflow.com/users/698511/tim) */
-    function multiKeyExists($key, $array) {
+    function array_key_exists_r($key, $array) {
         if (array_key_exists($key, $array)) {
             return true;
         }
-        foreach ($array as $k=>$v) {
-            if (!is_array($v)) {
+        foreach ($array as $a) {
+            if (!is_array($a)) {
                 continue;
             }
-            if (array_key_exists($key, $v)) {
+            if (array_key_exists($key, $a)) {
                 return true;
             }
         }
@@ -60,7 +60,7 @@ class Hash {
     }
     
     public function getHash($input, $algorithm) {
-        if ($this->multiKeyExists($algorithm, $this->allArrays)) {
+        if ($this->array_key_exists_r($algorithm, $this->allArrays)) {
             if (array_key_exists($algorithm, $this->mdArray)) {
                 return $this->getMDHash($input, $algorithm);
             }
