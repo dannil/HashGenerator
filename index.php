@@ -36,10 +36,10 @@
                         <select name="algorithm">
                             <?php
                             $hashObj = new Hash();
-                            $algos = $hashObj->getAllArrays();
-                            foreach ($algos as $algo) {
-                                while (list($key, $value) = each($algo)) {
-                                    if (!isset($session['algorithm']) && $key == "sha256") {
+                            $algorithms = $hashObj->getAllArrays();
+                            foreach ($algorithms as $algorithm) {
+                                while (list($key, $value) = each($algorithm)) {
+                                    if (!isset($session['algorithm']) && $key == $hashObj->getDefaultAlgorithm()) {
                                         echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
                                     }
                                     else if (isset($session['algorithm']) && $key == $session['algorithm']) {
@@ -57,7 +57,6 @@
                         <p><input type="submit" value="Hash string"></p>
                     </div>
                 </form>
-                
             </div>
             <div class="border"></div>
             <div id="result">
@@ -77,6 +76,5 @@
                 <p>This is an open source project; please visit <a href="https://github.com/dannil/HashGenerator">GitHub</a> for the source code.</p>
             </div>
         </div>
-        
     </body>
 </html>

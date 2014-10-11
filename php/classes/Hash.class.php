@@ -16,6 +16,8 @@ class Hash {
     private $allArrays;
     
     public function __construct() {
+        $this->defaultAlgorithm = "sha256";
+        
         $this->mdArray = array("md5" => "MD5");
         $this->ripemdArray = array("ripemd128" => "RIPEMD128", "ripemd160" => "RIPEMD160", "ripemd256" => "RIPEMD256", "ripemd320" => "RIPEMD320");
         $this->shaArray = array("sha1" => "SHA1", "sha256" => "SHA256", "sha384" => "SHA384", "sha512" => "SHA512");
@@ -37,6 +39,10 @@ class Hash {
             }
         }
         return false;
+    }
+    
+    public function getDefaultAlgorithm() {
+        return $this->defaultAlgorithm;
     }
     
     public function getMDArray() {
