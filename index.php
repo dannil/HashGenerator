@@ -1,13 +1,9 @@
 <?php
-    
     session_start();
-    
     require_once('php/classes/Hash.class.php');
-    
     if (isset($_SESSION)) {
         $session = $_SESSION;
     }
-    
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,25 +28,27 @@
                         <p>Salt <input type="text" name="salt" size="55"></p>
                         <p>Place salt at <input type="radio" name="placeSaltAt" value="beginning" checked>beginning <input type="radio" name="placeSaltAt" value="end">end</p>
                     </div>
-                    <p>Hashing algorithm
-                        <select name="algorithm">
-                            <?php
-                            $hashObj = new Hash();
-                            $algorithms = $hashObj->getAllArrays();
-                            foreach ($algorithms as $algorithm) {
-                                while (list($key, $value) = each($algorithm)) {
-                                    if (!isset($session['algorithm']) && $key == $hashObj->getDefaultAlgorithm()) {
-                                        echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
-                                    } else if (isset($session['algorithm']) && $key == $session['algorithm']) {
-                                        echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
-                                    } else {
-                                        echo '<option value="' . $key . '">' . $value . '</option>';
+                    <div id="algorithm">
+                        <p>Hashing algorithm
+                            <select name="algorithm">
+                                <?php
+                                $hashObj = new Hash();
+                                $algorithms = $hashObj->getAllArrays();
+                                foreach ($algorithms as $algorithm) {
+                                    while (list($key, $value) = each($algorithm)) {
+                                        if (!isset($session['algorithm']) && $key == $hashObj->getDefaultAlgorithm()) {
+                                            echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
+                                        } else if (isset($session['algorithm']) && $key == $session['algorithm']) {
+                                            echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
+                                        } else {
+                                            echo '<option value="' . $key . '">' . $value . '</option>';
+                                        }
                                     }
                                 }
-                            }
-                            ?>
-                        </select>
-                    </p>
+                                ?>
+                            </select>
+                        </p>
+                    </div>
                     <div class="button">
                         <p><input type="submit" value="Hash string"></p>
                     </div>

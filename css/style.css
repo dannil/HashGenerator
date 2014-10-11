@@ -79,6 +79,9 @@ html {
 #formcontainer p {
     margin-top: 6px;
 }
+#algorithm {
+    margin-top: 8px;
+}
 #result {
     margin: 14px;
 }
@@ -100,7 +103,7 @@ html {
 }
 #salt {
     display: none;
-    margin-top: 6px;
+    margin-top: 8px;
     margin-bottom: 0px;
 }
 textarea {
