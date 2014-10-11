@@ -15,6 +15,7 @@ class Hash {
     private $ripemdArray;
     private $shaArray;
     private $tigerArray;
+    private $whirlpoolArray;
     private $allArrays;
     
     public function __construct() {
@@ -24,7 +25,8 @@ class Hash {
         $this->ripemdArray = array("ripemd128" => "RIPEMD128", "ripemd160" => "RIPEMD160", "ripemd256" => "RIPEMD256", "ripemd320" => "RIPEMD320");
         $this->shaArray = array("sha1" => "SHA1", "sha256" => "SHA256", "sha384" => "SHA384", "sha512" => "SHA512");
         $this->tigerArray = array("tiger128" => "Tiger128", "tiger160" => "Tiger160", "tiger192" => "Tiger192");
-        $this->allArrays = array($this->mdArray, $this->ripemdArray, $this->shaArray, $this->tigerArray);
+        $this->whirlpoolArray = array("whirlpool" => "Whirlpool");
+        $this->allArrays = array($this->mdArray, $this->ripemdArray, $this->shaArray, $this->tigerArray, $this->whirlpoolArray);
     }
     
     /* Credits to Tim (http://stackoverflow.com/users/698511/tim) */
@@ -63,6 +65,10 @@ class Hash {
         return $this->tigerArray;
     }
     
+    public function getWhirlpoolArray() {
+        return $this->whirlpoolArray;
+    }
+    
     public function getAllArrays() {
         return $this->allArrays;
     }
@@ -81,6 +87,9 @@ class Hash {
             if (array_key_exists($algorithm, $this->tigerArray)) {
                 return $this->getTigerHash($input, $algorithm);
             }
+            if (array_key_exists($algorithm, $this->whirlpoolArray)) {
+                return $this->getWhirlpoolHash($input, $algorithm);
+            }
         } else {
             die("Invalid algorithm");
         }
@@ -88,53 +97,62 @@ class Hash {
     
     public function getMDHash($input, $algorithm) {
         require_once('../classes/HashMD.class.php');
-        $hashFamily = new HashMD();
+        $hashObj = new HashMD();
         switch ($algorithm) {
             case "md5":
-                return $hashFamily->getMD5Hash($input);
+                return $hashObj->getMD5Hash($input);
         }
     }
 
     public function getRIPEMDHash($input, $algorithm) {
         require_once('../classes/HashRIPEMD.class.php');
-        $hashFamily = new HashRIPEMD();
+        $hashObj = new HashRIPEMD();
         switch ($algorithm) {
             case "ripemd128":
-                return $hashFamily->getRIPEMD128Hash($input);
+                return $hashObj->getRIPEMD128Hash($input);
             case "ripemd160":
-                return $hashFamily->getRIPEMD160Hash($input);
+                return $hashObj->getRIPEMD160Hash($input);
             case "ripemd256":
-                return $hashFamily->getRIPEMD256Hash($input);
+                return $hashObj->getRIPEMD256Hash($input);
             case "ripemd320":
-                return $hashFamily->getRIPEMD320Hash($input);
+                return $hashObj->getRIPEMD320Hash($input);
         }
     }
     
     public function getSHAHash($input, $algorithm) {
         require_once('../classes/HashSHA.class.php');
-        $hashFamily = new HashSHA();
+        $hashObj = new HashSHA();
         switch ($algorithm) {
             case "sha1":
-                return $hashFamily->getSHA1Hash($input);
+                return $hashObj->getSHA1Hash($input);
             case "sha256":
-                return $hashFamily->getSHA256Hash($input);
+                return $hashObj->getSHA256Hash($input);
             case "sha384":
-                return $hashFamily->getSHA384Hash($input);
+                return $hashObj->getSHA384Hash($input);
             case "sha512":
-                return $hashFamily->getSHA512Hash($input);
+                return $hashObj->getSHA512Hash($input);
         }
     }
     
     public function getTigerHash($input, $algorithm) {
         require_once('../classes/HashTiger.class.php');
-        $hashFamily = new HashTiger();
+        $hashObj = new HashTiger();
         switch ($algorithm) {
             case "tiger128":
-                return $hashFamily->getTiger128Hash($input);
+                return $hashObj->getTiger128Hash($input);
             case "tiger160":
-                return $hashFamily->getTiger160Hash($input);
+                return $hashObj->getTiger160Hash($input);
             case "tiger192":
-                return $hashFamily->getTiger192Hash($input);
+                return $hashObj->getTiger192Hash($input);
+        }
+    }
+    
+    public function getWhirlpoolHash($input, $algorithm) {
+        require_once('../classes/HashWhirlpool.class.php');
+        $hashObj = new HashWhirlpool();
+        switch ($algorithm) {
+            case "whirlpool":
+                return $hashObj->getWhirlpoolHash($input);
         }
     }
     
