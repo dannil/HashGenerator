@@ -12,7 +12,7 @@
         <title>HashGenerator</title>
         <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-        <script type="text/javascript" src="js/showSalt.js"></script>
+        <script type="text/javascript" src="js/showsalt.js"></script>
     </head>
     <body>
         <div id="container">
