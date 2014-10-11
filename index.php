@@ -41,11 +41,9 @@
                                 while (list($key, $value) = each($algorithm)) {
                                     if (!isset($session['algorithm']) && $key == $hashObj->getDefaultAlgorithm()) {
                                         echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
-                                    }
-                                    else if (isset($session['algorithm']) && $key == $session['algorithm']) {
+                                    } else if (isset($session['algorithm']) && $key == $session['algorithm']) {
                                         echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
-                                    }
-                                    else {
+                                    } else {
                                         echo '<option value="' . $key . '">' . $value . '</option>';
                                     }
                                 }

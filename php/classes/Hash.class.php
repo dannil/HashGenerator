@@ -9,6 +9,8 @@
  */
 class Hash {
     
+    private $defaultAlgorithm;
+    
     private $mdArray;
     private $ripemdArray;
     private $shaArray;
