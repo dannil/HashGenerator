@@ -24,11 +24,8 @@ class Functions {
         if (array_key_exists($needle, $haystack)) {
             return true;
         }
-        foreach ($haystack as $hay) {
-            if (!is_array($hay)) {
-                continue;
-            }
-            if (array_key_exists($needle, $hay)) {
+        foreach ($haystack as $item) {
+            if (array_key_exists($needle, $item)) {
                 return true;
             }
         }
