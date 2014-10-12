@@ -5,16 +5,6 @@ require_once('../classes/Hash.class.php');
 unset($_SESSION);
 session_start();
 
-/* Credits to elusive (http://stackoverflow.com/users/427328/elusive) */
-function in_array_r($needle, $haystack, $strict = false) {
-    foreach ($haystack as $item) {
-        if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_r($needle, $item, $strict))) {
-            return true;
-        }
-    }
-    return false;
-}
-
 $stringToHash = filter_input(INPUT_POST, 'stringToHash', FILTER_SANITIZE_STRING);
 if (isset($stringToHash)) {
     $_SESSION['stringToHash'] = $stringToHash;

@@ -29,22 +29,6 @@ class Hash {
         $this->allArrays = array($this->mdArray, $this->ripemdArray, $this->shaArray, $this->tigerArray, $this->whirlpoolArray);
     }
     
-    /* Credits to Tim (http://stackoverflow.com/users/698511/tim) */
-    function array_key_exists_r($key, $array) {
-        if (array_key_exists($key, $array)) {
-            return true;
-        }
-        foreach ($array as $a) {
-            if (!is_array($a)) {
-                continue;
-            }
-            if (array_key_exists($key, $a)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
     public function getDefaultAlgorithm() {
         return $this->defaultAlgorithm;
     }
@@ -74,7 +58,9 @@ class Hash {
     }
     
     public function getHash($input, $algorithm) {
-        if ($this->array_key_exists_r($algorithm, $this->allArrays)) {
+        require_once('../classes/Functions.class.php');
+        $functions = new Functions();
+        if ($functions->array_key_exists_r($algorithm, $this->allArrays)) {
             if (array_key_exists($algorithm, $this->mdArray)) {
                 return $this->getMDHash($input, $algorithm);
             }
@@ -95,7 +81,7 @@ class Hash {
         }
     }
     
-    public function getMDHash($input, $algorithm) {
+    private function getMDHash($input, $algorithm) {
         require_once('../classes/HashMD.class.php');
         $hashObj = new HashMD();
         switch ($algorithm) {
@@ -104,7 +90,7 @@ class Hash {
         }
     }
 
-    public function getRIPEMDHash($input, $algorithm) {
+    private function getRIPEMDHash($input, $algorithm) {
         require_once('../classes/HashRIPEMD.class.php');
         $hashObj = new HashRIPEMD();
         switch ($algorithm) {
@@ -119,7 +105,7 @@ class Hash {
         }
     }
     
-    public function getSHAHash($input, $algorithm) {
+    private function getSHAHash($input, $algorithm) {
         require_once('../classes/HashSHA.class.php');
         $hashObj = new HashSHA();
         switch ($algorithm) {
@@ -134,7 +120,7 @@ class Hash {
         }
     }
     
-    public function getTigerHash($input, $algorithm) {
+    private function getTigerHash($input, $algorithm) {
         require_once('../classes/HashTiger.class.php');
         $hashObj = new HashTiger();
         switch ($algorithm) {
@@ -147,7 +133,7 @@ class Hash {
         }
     }
     
-    public function getWhirlpoolHash($input, $algorithm) {
+    private function getWhirlpoolHash($input, $algorithm) {
         require_once('../classes/HashWhirlpool.class.php');
         $hashObj = new HashWhirlpool();
         switch ($algorithm) {
