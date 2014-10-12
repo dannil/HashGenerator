@@ -20,15 +20,15 @@ class Functions {
     }
     
     /* Credits to Tim (http://stackoverflow.com/users/698511/tim) */
-    public function array_key_exists_r($key, $array) {
-        if (array_key_exists($key, $array)) {
+    public function array_key_exists_r($needle, $haystack) {
+        if (array_key_exists($needle, $haystack)) {
             return true;
         }
-        foreach ($array as $a) {
-            if (!is_array($a)) {
+        foreach ($haystack as $hay) {
+            if (!is_array($hay)) {
                 continue;
             }
-            if (array_key_exists($key, $a)) {
+            if (array_key_exists($needle, $hay)) {
                 return true;
             }
         }
