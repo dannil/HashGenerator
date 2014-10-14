@@ -11,6 +11,7 @@ class Hash {
     
     private $defaultAlgorithm;
     
+    private $havalArray;
     private $mdArray;
     private $ripemdArray;
     private $shaArray;
@@ -21,16 +22,21 @@ class Hash {
     public function __construct() {
         $this->defaultAlgorithm = "sha256";
         
+        $this->havalArray = array("haval128,5" => "HAVAL128,5", "haval160,5" => "HAVAL160,5", "haval192,5" => "HAVAL192,5", "haval224,5" => "HAVAL224,5", "haval256,5" => "HAVAL256,5");
         $this->mdArray = array("md5" => "MD5");
         $this->ripemdArray = array("ripemd128" => "RIPEMD128", "ripemd160" => "RIPEMD160", "ripemd256" => "RIPEMD256", "ripemd320" => "RIPEMD320");
         $this->shaArray = array("sha1" => "SHA1", "sha256" => "SHA256", "sha384" => "SHA384", "sha512" => "SHA512");
         $this->tigerArray = array("tiger128" => "Tiger128", "tiger160" => "Tiger160", "tiger192" => "Tiger192");
         $this->whirlpoolArray = array("whirlpool" => "Whirlpool");
-        $this->allArrays = array($this->mdArray, $this->ripemdArray, $this->shaArray, $this->tigerArray, $this->whirlpoolArray);
+        $this->allArrays = array($this->havalArray, $this->mdArray, $this->ripemdArray, $this->shaArray, $this->tigerArray, $this->whirlpoolArray);
     }
     
     public function getDefaultAlgorithm() {
         return $this->defaultAlgorithm;
+    }
+    
+    public function getHAVALArray() {
+        return $this->havalArray;
     }
     
     public function getMDArray() {
@@ -61,6 +67,9 @@ class Hash {
         require_once('../classes/Functions.class.php');
         $functions = new Functions();
         if ($functions->array_key_exists_r($algorithm, $this->allArrays)) {
+            if (array_key_exists($algorithm, $this->havalArray)) {
+                return $this->getHAVALHash($input, $algorithm);
+            }
             if (array_key_exists($algorithm, $this->mdArray)) {
                 return $this->getMDHash($input, $algorithm);
             }
@@ -78,6 +87,23 @@ class Hash {
             }
         } else {
             die("Invalid algorithm");
+        }
+    }
+    
+    private function getHAVALHash($input, $algorithm) {
+        require_once('../classes/HashHAVAL.class.php');
+        $hashObj = new HashHAVAL();
+        switch ($algorithm) {
+            case "haval128,5":
+                return $hashObj->getHAVAL128($input);
+            case "haval160,5":
+                return $hashObj->getHAVAL160($input);
+            case "haval192,5":
+                return $hashObj->getHAVAL192($input);
+            case "haval224,5":
+                return $hashObj->getHAVAL224($input);
+            case "haval256,5":
+                return $hashObj->getHAVAL256($input);
         }
     }
     
