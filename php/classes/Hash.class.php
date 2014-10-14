@@ -15,6 +15,7 @@ class Hash {
     private $mdArray;
     private $ripemdArray;
     private $shaArray;
+    private $snefruArray;
     private $tigerArray;
     private $whirlpoolArray;
     private $allArrays;
@@ -26,9 +27,10 @@ class Hash {
         $this->mdArray = array("md5" => "MD5");
         $this->ripemdArray = array("ripemd128" => "RIPEMD128", "ripemd160" => "RIPEMD160", "ripemd256" => "RIPEMD256", "ripemd320" => "RIPEMD320");
         $this->shaArray = array("sha1" => "SHA1", "sha256" => "SHA256", "sha384" => "SHA384", "sha512" => "SHA512");
+        $this->snefruArray = array("snefru" => "Snefru");
         $this->tigerArray = array("tiger128" => "Tiger128", "tiger160" => "Tiger160", "tiger192" => "Tiger192");
         $this->whirlpoolArray = array("whirlpool" => "Whirlpool");
-        $this->allArrays = array($this->havalArray, $this->mdArray, $this->ripemdArray, $this->shaArray, $this->tigerArray, $this->whirlpoolArray);
+        $this->allArrays = array($this->havalArray, $this->mdArray, $this->ripemdArray, $this->shaArray, $this->snefruArray, $this->tigerArray, $this->whirlpoolArray);
     }
     
     public function getDefaultAlgorithm() {
@@ -49,6 +51,10 @@ class Hash {
     
     public function getSHAArray() {
         return $this->shaArray;
+    }
+    
+    public function getSnefruArray() {
+        return $this->snefruArray;
     }
     
     public function getTigerArray() {
@@ -78,6 +84,9 @@ class Hash {
             }
             if (array_key_exists($algorithm, $this->shaArray)) {
                 return $this->getSHAHash($input, $algorithm);
+            }
+            if (array_key_exists($algorithm, $this->snefruArray)) {
+                return $this->getSnefruHash($input, $algorithm);
             }
             if (array_key_exists($algorithm, $this->tigerArray)) {
                 return $this->getTigerHash($input, $algorithm);
@@ -143,6 +152,15 @@ class Hash {
                 return $hashObj->getSHA384Hash($input);
             case "sha512":
                 return $hashObj->getSHA512Hash($input);
+        }
+    }
+    
+    private function getSnefruHash($input, $algorithm) {
+        require_once('../classes/HashSnefru.class.php');
+        $hashObj = new HashSnefru();
+        switch ($algorithm) {
+            case "snefru":
+                return $hashObj->getSnefruHash($input);
         }
     }
     
