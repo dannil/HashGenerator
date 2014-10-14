@@ -95,15 +95,15 @@ class Hash {
         $hashObj = new HashHAVAL();
         switch ($algorithm) {
             case "haval128,5":
-                return $hashObj->getHAVAL128($input);
+                return $hashObj->getHAVAL128Hash($input);
             case "haval160,5":
-                return $hashObj->getHAVAL160($input);
+                return $hashObj->getHAVAL160Hash($input);
             case "haval192,5":
-                return $hashObj->getHAVAL192($input);
+                return $hashObj->getHAVAL192Hash($input);
             case "haval224,5":
-                return $hashObj->getHAVAL224($input);
+                return $hashObj->getHAVAL224Hash($input);
             case "haval256,5":
-                return $hashObj->getHAVAL256($input);
+                return $hashObj->getHAVAL256Hash($input);
         }
     }
     
