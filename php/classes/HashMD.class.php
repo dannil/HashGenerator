@@ -10,6 +10,10 @@
  */
 class HashMD {
     
+    public function getMD4Hash($input) {
+        return hash('md4', $input);
+    }
+    
     public function getMD5Hash($input) {
         return hash('md5', $input);
     }
