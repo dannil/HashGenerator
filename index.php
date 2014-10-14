@@ -1,8 +1,10 @@
 <?php
     session_start();
+    require_once('php/classes/Constants.class.php');
     require_once('php/classes/Hash.class.php');
     if (isset($_SESSION)) {
         $session = $_SESSION;
+        unset($_SESSION);
     }
 ?>
 <!DOCTYPE html>
@@ -22,7 +24,7 @@
             <div class="border"></div>
             <div id="formcontainer">
                 <form method="POST" action="php/processing/indexProcessing.php">
-                    <p>String to hash <input type="text" name="stringToHash" size="46"<?php if (isset($session['stringToHash'])) { echo 'value="' . $session['stringToHash'] . '"'; } ?>></p>
+                    <p>String to hash <input type="text" name="stringToHash" size="46"<?php if (isset($session['stringToHash'])) { echo ' value="' . $session['stringToHash'] . '"'; } ?>></p>
                     <p>Use salt? <input type="checkbox" name="saltCheckbox" value="salt"></p>
                     <div id="salt">
                         <p>Salt <input type="text" name="salt" size="55"></p>
@@ -69,6 +71,7 @@
             </div>
             <div class="border"></div>
             <div id="footer">
+                <p>version <?php echo Constants::getVersion(); ?></p>
                 <p>This is an open source project; please visit <a href="https://github.com/dannil/HashGenerator">GitHub</a> for the source code.</p>
             </div>
         </div>
