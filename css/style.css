@@ -57,6 +57,9 @@ table {
 html {
     background-color: #FAFAFA;
 }
+p, h1, a {
+    font-family: "Calibri";
+}
 #container {
     margin: auto;
     margin-top: 160px;
