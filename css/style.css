@@ -104,11 +104,6 @@ p, h1, a {
 .button {
     margin-top: 6px;
 }
-#salt {
-    display: none;
-    margin-top: 8px;
-    margin-bottom: 0px;
-}
 textarea {
     resize: none;
     width: 99%;

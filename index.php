@@ -25,11 +25,6 @@
             <div id="formcontainer">
                 <form method="POST" action="php/processing/indexProcessing.php">
                     <p>String to hash <input type="text" name="stringToHash" size="46"<?php if (isset($session['stringToHash'])) { echo ' value="' . $session['stringToHash'] . '"'; } ?>></p>
-                    <p>Use salt? <input type="checkbox" name="saltCheckbox" value="salt"></p>
-                    <div id="salt">
-                        <p>Salt <input type="text" name="salt" size="55"></p>
-                        <p>Place salt at <input type="radio" name="placeSaltAt" value="beginning" checked>beginning <input type="radio" name="placeSaltAt" value="end">end</p>
-                    </div>
                     <div id="algorithm">
                         <p>Hashing algorithm
                             <select name="algorithm">

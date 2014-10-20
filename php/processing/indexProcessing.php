@@ -1,29 +1,12 @@
 <?php
 
-require_once('../classes/Hash.class.php');
-
-unset($_SESSION);
-session_start();
-
 $stringToHash = filter_input(INPUT_POST, 'stringToHash', FILTER_SANITIZE_STRING);
 if (isset($stringToHash)) {
+    require_once('../classes/Hash.class.php');
+    unset($_SESSION);
+    session_start();
+    
     $_SESSION['stringToHash'] = $stringToHash;
-    $saltCheckbox = filter_input(INPUT_POST, 'saltCheckbox', FILTER_SANITIZE_STRING);
-    if (isset($saltCheckbox)) {
-        $_SESSION['saltCheckbox'] = $saltCheckbox;
-        $salt = filter_input(INPUT_POST, 'salt', FILTER_SANITIZE_STRING);
-        $_SESSION['salt'] = $salt;
-        $placeSaltAt = filter_input(INPUT_POST, 'placeSaltAt', FILTER_SANITIZE_STRING);
-        if (isset($placeSaltAt)) {
-            $_SESSION['placeSaltAt'] = $placeSaltAt;
-            if ($placeSaltAt == 'beginning') {
-                $stringToHash = $salt . $stringToHash;
-            }
-            else if ($placeSaltAt == 'end') {
-                $stringToHash .= $salt;
-            }
-        }
-    }
     
     $algorithm = filter_input(INPUT_POST, 'algorithm', FILTER_SANITIZE_STRING);
     $_SESSION['algorithm'] = $algorithm;
