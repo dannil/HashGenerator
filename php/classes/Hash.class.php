@@ -24,7 +24,7 @@ class Hash {
         $this->defaultAlgorithm = "sha256";
         
         $this->havalArray = array("haval128,5" => "HAVAL128,5", "haval160,5" => "HAVAL160,5", "haval192,5" => "HAVAL192,5", "haval224,5" => "HAVAL224,5", "haval256,5" => "HAVAL256,5");
-        $this->mdArray = array("md4" => "MD4", "md5" => "MD5");
+        $this->mdArray = array("md2" => "MD2", "md4" => "MD4", "md5" => "MD5");
         $this->ripemdArray = array("ripemd128" => "RIPEMD128", "ripemd160" => "RIPEMD160", "ripemd256" => "RIPEMD256", "ripemd320" => "RIPEMD320");
         $this->shaArray = array("sha1" => "SHA1", "sha256" => "SHA256", "sha384" => "SHA384", "sha512" => "SHA512");
         $this->snefruArray = array("snefru" => "Snefru");
@@ -120,6 +120,8 @@ class Hash {
         require_once('../classes/HashMD.class.php');
         $hashObj = new HashMD();
         switch ($algorithm) {
+            case "md2":
+                return $hashObj->getMD2Hash($input);
             case "md4":
                 return $hashObj->getMD4Hash($input);
             case "md5":
