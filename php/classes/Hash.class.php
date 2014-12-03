@@ -29,13 +29,9 @@ class Hash {
     public function __construct() {
     	$this->defaultAlgorithm = "sha256";
     	
-    	$this->allowedAlgorithms = array("haval128,5" => "HAVAL128,5", "haval160,5" => "HAVAL160,5", "haval192,5" => "HAVAL192,5", "haval224,5" => "HAVAL224,5", "haval256,5" => "HAVAL256,5", 
-    			                         "md2" => "MD2", "md4" => "MD4", "md5" => "MD5", 
-    									 "ripemd128" => "RIPEMD128", "ripemd160" => "RIPEMD160", "ripemd256" => "RIPEMD256", "ripemd320" => "RIPEMD320",
-    									 "sha1" => "SHA1", "sha256" => "SHA256", "sha384" => "SHA384", "sha512" => "SHA512",
-    									 "snefru" => "Snefru",
-    									 "tiger128,3" => "Tiger128", "tiger160,3" => "Tiger160", "tiger192,3" => "Tiger192",
-    									 "whirlpool" => "Whirlpool");
+    	$this->allowedAlgorithms = array("haval128,5" => "", "haval160,5" => "", "haval192,5" => "", "haval224,5" => "", "haval256,5" => "", "md2" => "", "md4" => "", "md5" => "", 
+    									 "ripemd128" => "", "ripemd160" => "", "ripemd256" => "", "ripemd320" => "", "sha1" => "", "sha256" => "", "sha384" => "", "sha512" => "", 
+										 "snefru" => "", "tiger128,3" => "", "tiger160,3" => "", "tiger192,3" => "", "whirlpool" => "");
     	
     	$this->havalArray = array();
     	$this->mdArray = array();
