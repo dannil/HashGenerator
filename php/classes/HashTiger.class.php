@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Description of HashSHA
+ * Description of HashTiger.class.php
  *
  * @author Daniel
  * 
- * Class which handles all operations for the
- * Tiger hashing family
+ * Class which handles all operations for the Tiger hashing family.
  */
 class HashTiger {
     

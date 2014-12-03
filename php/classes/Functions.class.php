@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Description of Functions
+ * Description of Functions.class.php
  *
  * @author Daniel
  * 
- * Class which holds user-defined functions
+ * Class which holds user-defined functions.
  */
 class Functions {
     

@@ -3,11 +3,11 @@
 require_once('Functions.class.php');
 
 /**
- * Description of Hash
+ * Description of Hash.class.php
  *
  * @author Daniel
  * 
- * Class which contains which specific algorithms that can be used
+ * Class which contains which specific algorithms that can be used.
  */
 class Hash {
     

@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Description of HashMD
+ * Description of HashMD.class.php
  *
  * @author Daniel
  * 
- * Class which handles all operations for the MD
- * (Message-Digest) hashing family
+ * Class which handles all operations for the MD (Message-Digest) hashing family.
  */
 class HashMD {
     

@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Description of HashWhirlpool
+ * Description of HashWhirlpool.class.php
  *
  * @author Daniel
  * 
- * Class which handles all operations for the 
- * Whirlpool hash
+ * Class which handles all operations for the Whirlpool hash.
  */
 class HashWhirlpool {
 

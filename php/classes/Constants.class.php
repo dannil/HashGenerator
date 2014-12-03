@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Description of Constants
+ * Description of Constants.class.php
  *
  * @author Daniel
  * 
- * Class which holds constant values
+ * Class which holds constant values.
  */
 class Constants {
     

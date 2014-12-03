@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Description of HashHAVAL
+ * Description of HashHAVAL.class.php
  *
  * @author Daniel
  * 
- * Class which handles all operations for the HAVAL
- * hashing family
+ * Class which handles all operations for the HAVAL hashing family.
  */
 class HashHAVAL {
     

@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Description of HashRIPEMD
+ * Description of HashRIPEMD.class.php
  *
  * @author Daniel
  * 
- * Class which handles all operations for the RIPEMD
- * (RACE Integrity Primitives Evaluation Message Digest) hashing family
+ * Class which handles all operations for the RIPEMD (RACE Integrity Primitives Evaluation Message Digest) hashing family.
  */
 class HashRIPEMD {
     

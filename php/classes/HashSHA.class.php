@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Description of HashSHA
+ * Description of HashSHA.class.php
  *
  * @author Daniel
  * 
- * Class which handles all operations for the SHA
- * (Secure Hash Algorithm) hashing family
+ * Class which handles all operations for the SHA (Secure Hash Algorithm) hashing family.
  */
 class HashSHA {
     

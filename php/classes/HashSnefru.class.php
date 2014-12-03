@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Description of HashSnefru
+ * Description of HashSnefru.class.php
  *
  * @author Daniel
  * 
- * Class which handles all operations for the 
- * Snefru hash
+ * Class which handles all operations for the Snefru hash.
  */
 class HashSnefru {
     
