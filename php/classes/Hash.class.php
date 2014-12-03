@@ -1,5 +1,7 @@
 <?php
 
+require_once('Functions.class.php');
+
 /**
  * Description of Hash
  *
@@ -9,7 +11,11 @@
  */
 class Hash {
     
+	private $functions;
+	
     private $defaultAlgorithm;
+    
+    private $allowedAlgorithms;
     
     private $havalArray;
     private $mdArray;
@@ -21,16 +27,61 @@ class Hash {
     private $allArrays;
     
     public function __construct() {
-        $this->defaultAlgorithm = "sha256";
-        
-        $this->havalArray = array("haval128,5" => "HAVAL128,5", "haval160,5" => "HAVAL160,5", "haval192,5" => "HAVAL192,5", "haval224,5" => "HAVAL224,5", "haval256,5" => "HAVAL256,5");
-        $this->mdArray = array("md2" => "MD2", "md4" => "MD4", "md5" => "MD5");
-        $this->ripemdArray = array("ripemd128" => "RIPEMD128", "ripemd160" => "RIPEMD160", "ripemd256" => "RIPEMD256", "ripemd320" => "RIPEMD320");
-        $this->shaArray = array("sha1" => "SHA1", "sha256" => "SHA256", "sha384" => "SHA384", "sha512" => "SHA512");
-        $this->snefruArray = array("snefru" => "Snefru");
-        $this->tigerArray = array("tiger128" => "Tiger128", "tiger160" => "Tiger160", "tiger192" => "Tiger192");
-        $this->whirlpoolArray = array("whirlpool" => "Whirlpool");
-        $this->allArrays = array($this->havalArray, $this->mdArray, $this->ripemdArray, $this->shaArray, $this->snefruArray, $this->tigerArray, $this->whirlpoolArray);
+    	$this->defaultAlgorithm = "sha256";
+    	
+    	$this->allowedAlgorithms = array("haval128,5" => "HAVAL128,5", "haval160,5" => "HAVAL160,5", "haval192,5" => "HAVAL192,5", "haval224,5" => "HAVAL224,5", "haval256,5" => "HAVAL256,5", 
+    			                         "md2" => "MD2", "md4" => "MD4", "md5" => "MD5", 
+    									 "ripemd128" => "RIPEMD128", "ripemd160" => "RIPEMD160", "ripemd256" => "RIPEMD256", "ripemd320" => "RIPEMD320",
+    									 "sha1" => "SHA1", "sha256" => "SHA256", "sha384" => "SHA384", "sha512" => "SHA512",
+    									 "snefru" => "Snefru",
+    									 "tiger128,3" => "Tiger128", "tiger160,3" => "Tiger160", "tiger192,3" => "Tiger192",
+    									 "whirlpool" => "Whirlpool");
+    	
+    	$this->havalArray = array();
+    	$this->mdArray = array();
+    	$this->ripemdArray = array();
+    	$this->shaArray = array();
+    	$this->snefruArray = array();
+    	$this->tigerArray = array();
+    	$this->whirlpoolArray = array();
+    	
+    	$this->functions = new Functions();
+    	
+    	$algorithms = hash_algos();
+    	foreach ($algorithms as $algorithm) {
+    		if (array_key_exists($algorithm, $this->allowedAlgorithms)) {
+	    		if ($this->functions->strstartswith($algorithm, "haval")) {
+	    			$array = array($algorithm => strtoupper($algorithm));
+	    			$this->havalArray = array_merge($this->havalArray, $array);
+	    		}
+	    		if ($this->functions->strstartswith($algorithm, "md")) {
+	    			$array = array($algorithm => strtoupper($algorithm));
+	    			$this->mdArray = array_merge($this->mdArray, $array);
+	    		}
+	    		if ($this->functions->strstartswith($algorithm, "ripemd")) {
+	    			$array = array($algorithm => strtoupper($algorithm));
+	    			$this->ripemdArray = array_merge($this->ripemdArray, $array);
+	    		}
+	    		if ($this->functions->strstartswith($algorithm, "sha")) {
+	    			$array = array($algorithm => strtoupper($algorithm));
+	    			$this->shaArray = array_merge($this->shaArray, $array);
+	    		}
+	    		if ($this->functions->strstartswith($algorithm, "snefru")) {
+	    			$array = array($algorithm => ucfirst($algorithm));
+	    			$this->snefruArray = array_merge($this->snefruArray, $array);
+	    		}
+	    		if ($this->functions->strstartswith($algorithm, "tiger")) {
+	    			$array = array($algorithm => ucfirst($algorithm));
+	    			$this->tigerArray = array_merge($this->tigerArray, $array);
+	    		}
+	    		if ($this->functions->strstartswith($algorithm, "whirlpool")) {
+	    			$array = array($algorithm => ucfirst($algorithm));
+	    			$this->whirlpoolArray = array_merge($this->whirlpoolArray, $array);
+	    		}
+    		}
+    	}
+    	
+    	$this->allArrays = array($this->havalArray, $this->mdArray, $this->ripemdArray, $this->shaArray, $this->snefruArray, $this->tigerArray, $this->whirlpoolArray);
     }
     
     public function getDefaultAlgorithm() {
@@ -70,9 +121,7 @@ class Hash {
     }
     
     public function getHash($input, $algorithm) {
-        require_once('../classes/Functions.class.php');
-        $functions = new Functions();
-        if ($functions->array_key_exists_r($algorithm, $this->allArrays)) {
+        if ($this->functions->array_key_exists_r($algorithm, $this->allArrays)) {
             if (array_key_exists($algorithm, $this->havalArray)) {
                 return $this->getHAVALHash($input, $algorithm);
             }
@@ -165,18 +214,22 @@ class Hash {
         switch ($algorithm) {
             case "snefru":
                 return $hashObj->getSnefruHash($input);
+            case "snefru256":
+            	return $hashObj->getSnefru256Hash($input);
         }
     }
     
     private function getTigerHash($input, $algorithm) {
         require_once('../classes/HashTiger.class.php');
         $hashObj = new HashTiger();
+        echo $algorithm;
         switch ($algorithm) {
-            case "tiger128":
+            case "tiger128,3":
                 return $hashObj->getTiger128Hash($input);
-            case "tiger160":
+                die();
+            case "tiger160,3":
                 return $hashObj->getTiger160Hash($input);
-            case "tiger192":
+            case "tiger192,3":
                 return $hashObj->getTiger192Hash($input);
         }
     }
