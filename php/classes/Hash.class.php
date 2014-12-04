@@ -17,6 +17,7 @@ class Hash {
     
     private $allowedAlgorithms;
     
+    private $fnvArray;
     private $havalArray;
     private $mdArray;
     private $ripemdArray;
@@ -29,10 +30,12 @@ class Hash {
     public function __construct() {
     	$this->defaultAlgorithm = "sha256";
     	
-    	$this->allowedAlgorithms = array("haval128,5" => "", "haval160,5" => "", "haval192,5" => "", "haval224,5" => "", "haval256,5" => "", "md2" => "", "md4" => "", "md5" => "", 
-    									 "ripemd128" => "", "ripemd160" => "", "ripemd256" => "", "ripemd320" => "", "sha1" => "", "sha256" => "", "sha384" => "", "sha512" => "", 
-										 "snefru" => "", "tiger128,3" => "", "tiger160,3" => "", "tiger192,3" => "", "whirlpool" => "");
+    	$this->allowedAlgorithms = array("fnv132" => "", "fnv1a32" => "", "fnv164" => "", "fnv1a64" => "", "haval128,5" => "", "haval160,5" => "", "haval192,5" => "", 
+    									 "haval224,5" => "", "haval256,5" => "", "md2" => "", "md4" => "", "md5" => "", "ripemd128" => "", "ripemd160" => "", 
+    									 "ripemd256" => "", "ripemd320" => "", "sha1" => "", "sha256" => "", "sha384" => "", "sha512" => "", "snefru" => "", 
+    									 "tiger128,3" => "", "tiger160,3" => "", "tiger192,3" => "", "whirlpool" => "");
     	
+    	$this->fnvArray = array();
     	$this->havalArray = array();
     	$this->mdArray = array();
     	$this->ripemdArray = array();
@@ -46,6 +49,10 @@ class Hash {
     	$algorithms = hash_algos();
     	foreach ($algorithms as $algorithm) {
     		if (array_key_exists($algorithm, $this->allowedAlgorithms)) {
+	    		if ($this->functions->strstartswith($algorithm, "fnv")) {
+	    			$array = array($algorithm => strtoupper($algorithm));
+	    			$this->fnvArray = array_merge($this->fnvArray, $array);
+	    		}
 	    		if ($this->functions->strstartswith($algorithm, "haval")) {
 	    			$array = array($algorithm => strtoupper($algorithm));
 	    			$this->havalArray = array_merge($this->havalArray, $array);
@@ -77,11 +84,15 @@ class Hash {
     		}
     	}
     	
-    	$this->allArrays = array($this->havalArray, $this->mdArray, $this->ripemdArray, $this->shaArray, $this->snefruArray, $this->tigerArray, $this->whirlpoolArray);
+    	$this->allArrays = array($this->fnvArray, $this->havalArray, $this->mdArray, $this->ripemdArray, $this->shaArray, $this->snefruArray, $this->tigerArray, $this->whirlpoolArray);
     }
     
     public function getDefaultAlgorithm() {
         return $this->defaultAlgorithm;
+    }
+    
+    public function getFNVArray() {
+    	return $this->fnvArray;
     }
     
     public function getHAVALArray() {
@@ -118,6 +129,9 @@ class Hash {
     
     public function getHash($input, $algorithm) {
         if ($this->functions->array_key_exists_r($algorithm, $this->allArrays)) {
+        	if (array_key_exists($algorithm, $this->fnvArray)) {
+        		return $this->getFNVHash($input, $algorithm);
+        	}
             if (array_key_exists($algorithm, $this->havalArray)) {
                 return $this->getHAVALHash($input, $algorithm);
             }
@@ -141,6 +155,21 @@ class Hash {
             }
         } else {
             die("Invalid algorithm");
+        }
+    }
+    
+    private function getFNVHash($input, $algorithm) {
+    	require_once('../classes/HashFNV.class.php');
+    	$hashObj = new HashFNV();
+            switch ($algorithm) {
+            case "fnv132":
+                return $hashObj->getFNV132Hash($input);
+            case "fnv1a32":
+            	return $hashObj->getFNV1A32Hash($input);
+            case "fnv164":
+                return $hashObj->getFNV164Hash($input);
+            case "fnv1a64":
+                return $hashObj->getFNV1A64Hash($input);
         }
     }
     
