@@ -250,7 +250,6 @@ class Hash {
         switch ($algorithm) {
             case "tiger128,3":
                 return $hashObj->getTiger128Hash($input);
-                die();
             case "tiger160,3":
                 return $hashObj->getTiger160Hash($input);
             case "tiger192,3":
