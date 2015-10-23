@@ -247,7 +247,6 @@ class Hash {
     private function getTigerHash($input, $algorithm) {
         require_once('../classes/HashTiger.class.php');
         $hashObj = new HashTiger();
-        echo $algorithm;
         switch ($algorithm) {
             case "tiger128,3":
                 return $hashObj->getTiger128Hash($input);
