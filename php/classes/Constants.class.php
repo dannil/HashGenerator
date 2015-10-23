@@ -13,4 +13,8 @@ class Constants {
         return "1.1.1";
     }
     
+    public static function getPublishDate() {
+    	return "2014-10-20";
+    }
+    
 }

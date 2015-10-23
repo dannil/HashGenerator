@@ -64,7 +64,7 @@
             </div>
             <div class="border"></div>
             <div id="footer">
-                <p>version <?php echo Constants::getVersion(); ?></p>
+                <p>version <?php echo Constants::getVersion(); ?> | <?php echo Constants::getPublishDate(); ?></p>
                 <p>This is an open source project; please visit <a href="https://github.com/dannil/HashGenerator">GitHub</a> for the source code.</p>
             </div>
         </div>
