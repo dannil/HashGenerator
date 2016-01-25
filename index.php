@@ -28,17 +28,15 @@
                             <select name="algorithm">
                                 <?php
                                 $hashObj = new Hash();
-                                $algorithms = $hashObj->getAllArrays();
-                                foreach ($algorithms as $algorithm) {
-                                    while (list($key, $value) = each($algorithm)) {
-                                        if (!isset($session['algorithm']) && $key == $hashObj->getDefaultAlgorithm()) {
-                                            echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
-                                        } else if (isset($session['algorithm']) && $key == $session['algorithm']) {
-                                            echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
-                                        } else {
-                                            echo '<option value="' . $key . '">' . $value . '</option>';
-                                        }
-                                    }
+                                $algorithms = $hashObj->getAllowedAlgorithms();
+                                foreach ($algorithms as $key => $value) {
+                                	if (!isset($session['algorithm']) && $key == $hashObj->getDefaultAlgorithm()) {
+                                		echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
+                                	} else if (isset($session['algorithm']) && $key == $session['algorithm']) {
+                                		echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
+                                	} else {
+                                		echo '<option value="' . $key . '">' . $value . '</option>';
+                                	}
                                 }
                                 ?>
                             </select>
