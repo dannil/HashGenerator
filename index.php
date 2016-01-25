@@ -28,7 +28,7 @@
                             <select name="algorithm">
                                 <?php
                                 $hashObj = new Hash();
-                                $algorithms = $hashObj->getAllowedAlgorithms();
+                                $algorithms = $hashObj->getAllowed();
                                 foreach ($algorithms as $key => $value) {
                                 	if (!isset($session['algorithm']) && $key == $hashObj->getDefaultAlgorithm()) {
                                 		echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';

@@ -13,14 +13,14 @@ class Hash {
     
 	// private $functions;
 	
-    private $defaultAlgorithm;
+    private $default;
     
-    private $allowedAlgorithms;
+    private $allowed;
     
     public function __construct() {
-    	$this->defaultAlgorithm = "sha256";
+    	$this->default = "sha256";
     	
-    	$this->allowedAlgorithms = array("fnv132" => "FNV132", "fnv1a32" => "FNV1A32", "fnv164" => "FNV164", "fnv1a64" => "FNV1A64", 
+    	$this->allowed = array("fnv132" => "FNV132", "fnv1a32" => "FNV1A32", "fnv164" => "FNV164", "fnv1a64" => "FNV1A64", 
     									 "haval128,5" => "HAVAL128,5", "haval160,5" => "HAVAL160,5", "haval192,5" => "HAVAL192,5", 
     									 "haval224,5" => "HAVAL224,5", "haval256,5" => "HAVAL256,5", 
     									 "md2" => "MD2", "md4" => "MD4", "md5" => "MD5", 
@@ -33,27 +33,27 @@ class Hash {
     	
     	// $this->functions = new Functions();
     	
-    	$implementedAlgorithms = hash_algos();
-    	foreach (array_keys($this->allowedAlgorithms) as $allowedAlgorithm) {
-    		if (!in_array($allowedAlgorithm, $implementedAlgorithms)) {
-    			unset($this->allowedAlgorithms[$allowedAlgorithm]);
+    	$implemented = hash_algos();
+    	foreach (array_keys($this->allowed) as $allowed) {
+    		if (!in_array($allowed, $implemented)) {
+    			unset($this->allowed[$allowed]);
     		}
     	}
     }
     
-    public function getDefaultAlgorithm() {
-        return $this->defaultAlgorithm;
+    public function getDefault() {
+        return $this->default;
     }
     
-    public function getAllowedAlgorithms() {
-    	return $this->allowedAlgorithms;
+    public function getAllowed() {
+    	return $this->allowed;
     }
     
     public function getHash($input, $algorithm) {
-        if (array_key_exists(strtolower($algorithm), $this->allowedAlgorithms)) {
+        if (array_key_exists(strtolower($algorithm), $this->allowed)) {
         	return hash($algorithm, $input);
         }
-        return hash($this->defaultAlgorithm, $input);
+        return hash($this->default, $input);
     }
     
 }
