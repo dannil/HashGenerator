@@ -27,10 +27,10 @@
                         <p>Hashing algorithm
                             <select name="algorithm">
                                 <?php
-                                $hashObj = new Hash();
-                                $algorithms = $hashObj->getAllowed();
+                                $hash = new Hash();
+                                $algorithms = $hash->getAllowed();
                                 foreach ($algorithms as $key => $value) {
-                                	if (!isset($session['algorithm']) && $key == $hashObj->getDefault()) {
+                                	if (!isset($session['algorithm']) && $key == $hash->getDefault()) {
                                 		echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
                                 	} else if (isset($session['algorithm']) && $key == $session['algorithm']) {
                                 		echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
