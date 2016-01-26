@@ -30,7 +30,7 @@
                                 $hashObj = new Hash();
                                 $algorithms = $hashObj->getAllowed();
                                 foreach ($algorithms as $key => $value) {
-                                	if (!isset($session['algorithm']) && $key == $hashObj->getDefaultAlgorithm()) {
+                                	if (!isset($session['algorithm']) && $key == $hashObj->getDefault()) {
                                 		echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
                                 	} else if (isset($session['algorithm']) && $key == $session['algorithm']) {
                                 		echo '<option selected="selected" value="' . $key . '">' . $value . '</option>';
