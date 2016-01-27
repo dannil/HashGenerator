@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require_once('php/classes/Constants.class.php');
-    require_once('php/classes/Hash.class.php');
+    require_once('application/includes/Constants.class.php');
+    require_once('application/includes/Hash.class.php');
     if (isset($_SESSION)) {
         $session = $_SESSION;
         unset($_SESSION);
@@ -12,7 +12,7 @@
     <head>
         <meta charset="UTF-8">
         <title>HashGenerator</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="public/css/style.css">
     </head>
     <body>
         <div id="container">
@@ -21,7 +21,7 @@
             </div>
             <div class="border"></div>
             <div id="formcontainer">
-                <form method="POST" action="php/processing/indexProcessing.php">
+                <form method="POST" action="application/includes/indexProcessing.php">
                     <p>String to hash <input type="text" name="stringToHash" size="46"<?php if (isset($session['stringToHash'])) { echo ' value="' . $session['stringToHash'] . '"'; } ?>></p>
                     <div id="algorithm">
                         <p>Hashing algorithm
