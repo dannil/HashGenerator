@@ -6,14 +6,10 @@
         </testsuite>
     </testsuites>
     
-    <!-- <filter>
+    <filter>
 	  <whitelist processUncoveredFilesFromWhitelist="true">
 	    <directory suffix=".php">application/includes</directory>
-	    <exclude>
-	      <directory suffix=".php">/path/to/files</directory>
-	      <file>/path/to/file</file>
-	    </exclude>
 	  </whitelist>
-	</filter> -->
+	</filter>
     
 </phpunit>
