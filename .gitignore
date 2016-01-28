@@ -73,6 +73,15 @@ local.properties
 R.java
 
 ######################
+# PHP
+######################
+vendor/
+
+# PDT-specific
+.buildpath
+/target
+
+######################
 # Other
 ######################
 project.properties
@@ -94,6 +103,4 @@ proguard/
 # CDT-specific
 .cproject
 
-# PDT-specific
-.buildpath
-/target
+
