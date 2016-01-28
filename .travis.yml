@@ -12,3 +12,8 @@ branches:
   only:
   - master
   - dev
+  
+install:
+  - composer install
+script:
+  - vendor/bin/phpunit
