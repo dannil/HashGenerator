@@ -1,9 +1,7 @@
 <?php
 
-require_once('Functions.class.php');
-
 /**
- * Description of Hash.class.php
+ * Description of Hash.php
  *
  * @author Daniel
  * 

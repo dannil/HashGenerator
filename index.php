@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require_once('application/includes/Constants.class.php');
-    require_once('application/includes/Hash.class.php');
+    require_once('application/includes/Constants.php');
+    require_once('application/includes/Hash.php');
     if (isset($_SESSION)) {
         $session = $_SESSION;
         unset($_SESSION);

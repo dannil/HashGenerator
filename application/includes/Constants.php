@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of Constants.class.php
+ * Description of Constants.php
  *
  * @author Daniel
  * 
