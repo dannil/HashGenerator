@@ -13,8 +13,6 @@ if (isset($stringToHash)) {
     
     $hashObj = new Hash();
     $_SESSION['hash'] = $hashObj->getHash($stringToHash, $algorithm);
-    header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER', FILTER_SANITIZE_STRING));
+    return header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER', FILTER_SANITIZE_STRING));
 }
-else {
-    die("Unallowed access method");
-}
+return header('Location: ' . $_SERVER["HTTP_REFERER"]);
