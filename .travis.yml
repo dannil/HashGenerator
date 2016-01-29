@@ -17,10 +17,11 @@ install:
   - composer install
 script:
   - vendor/bin/phpunit
-after_script:
-  - vendor/bin/codacycoverage clover build/logs/clover.xml
-  
-
+after_success:
+  - curl http://www.jpm4j.org/install/script > jpmInstall.sh
+  - sudo sh jpmInstall.sh
+  - sudo jpm install com.codacy:codacy-coverage-reporter:assembly
+  - codacy-coverage-reporter -l PHP -r build/logs/clover.xml --projectToken $CODACY_PROJECT_TOKEN
   
 env:
   global:
