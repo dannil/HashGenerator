@@ -13,10 +13,14 @@ branches:
 before_install:
   - if [[ $TRAVIS_PHP_VERSION =~ ^hhvm ]]; then echo 'xdebug.enable = On' >> /etc/hhvm/php.ini; fi
 install:
+  - composer self-update
   - composer install
 script:
-  - vendor/bin/phpunit
-  - vendor/bin/codacycoverage clover
+  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml --coverage-html build/coverage
+after_script:
+  - php vendor/bin/codacycoverage clover build/logs/clover.xml
+  
+
   
 env:
   global:
