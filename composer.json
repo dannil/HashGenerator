@@ -1,4 +1,15 @@
 {
+    "name": "dannil/HashGenerator",
+    "description": "An easy-to-use website application for generating hashes, with several different hashing algorithms",
+    "license": "Apache License 2.0",
+    "authors": [
+        {
+            "name": "Daniel Nilsson",
+            "email": "daniel.nilsson@dannils.se",
+            "homepage": "http://www.dannils.se",
+            "role": "Developer"
+        }
+    ],
     "require-dev": {
 		"codacy/coverage": "1.0.3",
         "phpunit/phpunit": "5.1.6"
