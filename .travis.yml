@@ -16,9 +16,9 @@ install:
   - composer self-update
   - composer install
 script:
-  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml --coverage-html build/coverage
+  - vendor/bin/phpunit
 after_script:
-  - php vendor/bin/codacycoverage clover build/logs/clover.xml
+  - vendor/bin/codacycoverage clover build/logs/clover.xml
   
 
   
