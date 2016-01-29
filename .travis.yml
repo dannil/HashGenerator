@@ -16,7 +16,7 @@ install:
   - composer install
 script:
   - vendor/bin/phpunit
-  - vendor/bin/codacycoverage clover
+  - php vendor/bin/codacycoverage clover
   
 env:
   global:
