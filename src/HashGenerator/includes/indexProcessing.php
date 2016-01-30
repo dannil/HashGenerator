@@ -2,7 +2,7 @@
 
 $stringToHash = filter_input(INPUT_POST, 'stringToHash', FILTER_SANITIZE_STRING);
 if (isset($stringToHash)) {
-    require_once('Hash.php');
+    require_once('../../includes/Hash.php');
     unset($_SESSION);
     session_start();
     

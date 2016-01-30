@@ -10,6 +10,15 @@
             "role": "Developer"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "HashGenerator\\": "src/HashGenerator"
+        }
+    },
+    "require": {
+    	"slim/slim": "3.x-dev",
+    	"slim/twig-view": "^2.0"
+    },
     "require-dev": {
 		"codacy/coverage": "1.0.3",
         "phpunit/phpunit": "5.1.6"
