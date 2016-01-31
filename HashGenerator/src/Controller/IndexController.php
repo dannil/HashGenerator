@@ -24,10 +24,6 @@ class IndexController {
 		$this->hash = new Hash();
 	}
 	
-	public function hello() {
-		echo "Hello Daniel!";
-	}
-	
 	public function index(Request $request, Response $response) {
 		$this->logger->info('Index page loading');
 		
