@@ -1,8 +1,10 @@
 <?php
 
-require __DIR__ . '/../application/includes/Hash.php';
+namespace HashGenerator\Test;
 
-class HashTest extends PHPUnit_Framework_TestCase {
+use HashGenerator\Model\Hash;
+
+class HashTest extends \PHPUnit_Framework_TestCase {
 	
 	protected $hash;
 	

@@ -1,8 +1,10 @@
 <?php
 
-require __DIR__ . '/../application/includes/Constants.php';
+namespace HashGenerator\Test;
 
-class ConstantsTest extends PHPUnit_Framework_TestCase {
+use HashGenerator\Model\Constants;
+
+class ConstantsTest extends \PHPUnit_Framework_TestCase {
 
 	public function testGetVersion() {
 		$this->assertNotNull(Constants::getVersion());
