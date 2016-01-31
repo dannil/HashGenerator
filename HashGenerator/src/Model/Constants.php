@@ -1,5 +1,7 @@
 <?php
 
+namespace HashGenerator\Model;
+
 /**
  * Description of Constants.php
  *

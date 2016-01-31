@@ -12,12 +12,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "HashGenerator\\": "src/HashGenerator"
+            "HashGenerator\\": "HashGenerator/src"
         }
     },
     "require": {
     	"slim/slim": "3.x-dev",
-    	"slim/twig-view": "^2.0"
+    	"slim/twig-view": "^2.0",
+    	"monolog/monolog": "^1.13"
     },
     "require-dev": {
 		"codacy/coverage": "1.0.3",

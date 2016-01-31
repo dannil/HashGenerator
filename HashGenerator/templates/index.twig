@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HashGenerator</title>
+        <link rel="stylesheet" href="{{ base_url() }}/css/style.css">
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <h1>HashGenerator</h1>
+            </div>
+            <div class="border"></div>
+            <div id="formcontainer">
+                <form method="POST" action="hash">
+                    <p>String to hash <input type="text" name="hashInput" size="46" value="{{ hashInput }}"></p>
+                    <div id="algorithm">
+                        <p>Hashing algorithm
+                            <select name="algorithm">
+                            {% for key, value in algorithms %}
+								<option value="{{ key }}">{{ value}}</option>
+                            {% endfor %}
+                            </select>
+                        </p>
+                    </div>
+                    <div class="button">
+                        <p><input type="submit" value="Hash string"></p>
+                    </div>
+                </form>
+            </div>
+            <div class="border"></div>
+            <div id="result">
+            	<p>Result</p>
+                <textarea>{{ hashedString }}</textarea>
+            </div>
+            <div class="border"></div>
+            <div id="footer">
+                <p>version | </p>
+                <p>This is an open source project; please visit <a href="https://github.com/dannil/HashGenerator">GitHub</a> for the source code.</p>
+            </div>
+        </div>
+    </body>
+</html>

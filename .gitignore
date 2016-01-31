@@ -76,6 +76,7 @@ R.java
 # PHP
 ######################
 vendor/
+cache/
 
 # PDT-specific
 .buildpath
