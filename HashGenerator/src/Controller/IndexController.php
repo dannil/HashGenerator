@@ -24,13 +24,13 @@ class IndexController {
 		$this->hash = new Hash();
 	}
 	
-	public function hello(Request $request, Response $response, $args) {
+	public function hello() {
 		echo "Hello Daniel!";
 		
 		return $response;
 	}
 	
-	public function index(Request $request, Response $response, $args) {
+	public function index(Request $request, Response $response) {
 		$this->logger->info('Index page loading');
 		
 		$params = array('algorithms' => $this->hash->getAllowed());
@@ -39,7 +39,7 @@ class IndexController {
 		return $response;
 	}
 	
-	public function hash(Request $request, Response $response, $args) {
+	public function hash(Request $request, Response $response) {
 		$body = $request->getParsedBody();
 		
 		$hashInput = $body['hashInput'];
