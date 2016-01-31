@@ -26,8 +26,6 @@ class IndexController {
 	
 	public function hello() {
 		echo "Hello Daniel!";
-		
-		return $response;
 	}
 	
 	public function index(Request $request, Response $response) {
