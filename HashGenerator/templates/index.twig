@@ -16,9 +16,13 @@
 					<p>String to hash <input type="text" name="hashInput" size="46" value="{{ hashInput }}"></p>
 					<div id="algorithm">
 						<p>Hashing algorithm
-							<select name="algorithm">
+							<select name="usedAlgorithm">
 							{% for key, value in algorithms %}
-								<option value="{{ key }}">{{ value}}</option>
+								{% if key == usedAlgorithm %}
+									<option selected="selected" value="{{ key }}">{{ value}}</option>
+								{% else %}
+									<option value="{{ key }}">{{ value}}</option>
+								{% endif %}
 							{% endfor %}
 							</select>
 						</p>

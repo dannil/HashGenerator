@@ -1,6 +1,8 @@
 <?php
 // DIC configuration
 
+//use Slim\Router;
+
 $container = $app->getContainer();
 
 // -----------------------------------------------------------------------------
