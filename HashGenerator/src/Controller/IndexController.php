@@ -2,6 +2,7 @@
 
 namespace HashGenerator\Controller;
 
+use HashGenerator\Controller\BaseController;
 use HashGenerator\Model\Hash;
 
 use Psr\Log\LoggerInterface;
@@ -11,7 +12,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
 use Slim\Views\Twig;
 
-class IndexController {
+class IndexController extends BaseController {
 	
 	private $view;
 	private $logger;
@@ -19,6 +20,8 @@ class IndexController {
 	private $hash;
 	
 	public function __construct(Twig $view, LoggerInterface $logger) {
+		parent::__construct();
+		
 		$this->view = $view;
 		$this->logger = $logger;
 		
@@ -34,6 +37,9 @@ class IndexController {
 			 			'algorithms' => $this->hash->getAllowed(), 
 						'usedAlgorithm' => $usedAlgorithm,
 						'hashedString' => $hashedString);
+		
+		$params = parent::mergeParameters($params);
+		
 		$this->view->render($response, 'index.twig', $params);
 		
 		return $response;
