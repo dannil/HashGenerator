@@ -11,11 +11,11 @@ namespace HashGenerator\Model;
  */
 class Constants {
     
-    public static function getVersion() {
+    public function getVersion() {
         return "1.2.0";
     }
     
-    public static function getPublishDate() {
+    public function getPublishDate() {
     	return "2016-02-08";
     }
     

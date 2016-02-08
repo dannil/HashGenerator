@@ -9,8 +9,9 @@ class BaseController {
 	protected $params;
 	
 	protected function __construct() {
-		$this->params = array('version' => Constants::getVersion(),
-							  'publishDate' => Constants::getPublishDate());
+		$constants = new Constants();
+		$this->params = array('version' => $constants->getVersion(),
+							  'publishDate' => $constants->getPublishDate());
 	}
 	
 	protected function mergeParameters(array $params) {

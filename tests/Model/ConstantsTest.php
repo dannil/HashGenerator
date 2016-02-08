@@ -6,12 +6,18 @@ use HashGenerator\Model\Constants;
 
 class ConstantsTest extends \PHPUnit_Framework_TestCase {
 
+	protected $constants;
+	
+	protected function setUp() {
+		$this->constants = new Constants();
+	}
+	
 	public function testGetVersion() {
-		$this->assertNotNull(Constants::getVersion());
+		$this->assertNotNull($this->constants->getVersion());
 	}
 
 	public function testGetPublishDate() {
-		$this->assertNotNull(Constants::getPublishDate());
+		$this->assertNotNull($this->constants->getPublishDate());
 	}
 
 
