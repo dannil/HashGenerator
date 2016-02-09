@@ -22,7 +22,7 @@
     	"monolog/monolog": "1.17.2"
     },
     "require-dev": {
-		"codacy/coverage": "1.0.3",
+		"codacy/coverage": "dev-master",
         "phpunit/phpunit": "5.1.6"
     }
 }
