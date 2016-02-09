@@ -10,6 +10,7 @@ bin_temp/
 gen/
 target/
 lib/cache/
+log/
 
 ######################
 # Eclipse
