@@ -53,7 +53,7 @@ class IndexController extends BaseController {
 		$hashedString = $this->hash->getHash($hashInput, $usedAlgorithm);
 		
 		// For security purposes this is commented; only use for debug
-		// $this->logger->info('Hashed ' . $hashInput . ' to ' . $hashedString);
+		// $this->logger->info("[" . $usedAlgorithm . "] " . $hashInput . ' --> ' . $hashedString);
 		
 		$_SESSION['hashInput'] = $hashInput;
 		$_SESSION['usedAlgorithm'] = $usedAlgorithm;
