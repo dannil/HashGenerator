@@ -1,8 +1,6 @@
 <?php
 // DIC configuration
 
-//use Slim\Router;
-
 $container = $app->getContainer();
 
 // -----------------------------------------------------------------------------
@@ -21,10 +19,10 @@ $container['view'] = function ($c) {
     return $view;
 };
 
-// Flash messages
-// $container['flash'] = function ($c) {
-//     return new \Slim\Flash\Messages;
-// };
+// cache
+$container['cache'] = function () {
+	return new \Slim\HttpCache\CacheProvider();
+};
 
 // -----------------------------------------------------------------------------
 // Service factories
