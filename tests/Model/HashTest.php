@@ -12,9 +12,9 @@ class HashTest extends \PHPUnit_Framework_TestCase {
 		$this->hash = new Hash();
 	}
 	
-// 	public function testGetDefault() {
-// 		$this->assertEquals("sha256", $this->hash->getDefault());
-// 	}
+	public function testGetDefault() {
+		$this->assertEquals("sha256", $this->hash->getDefault());
+	}
 	
 // 	public function testGetAllowed() {
 // 		$this->assertNotNull($this->hash->getAllowed());
