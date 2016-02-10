@@ -10,8 +10,6 @@ namespace HashGenerator\Model;
  * Class which contains which specific algorithms that can be used.
  */
 class Hash {
-    
-	// private $functions;
 	
     private $default;
     private $allowed;
@@ -29,8 +27,7 @@ class Hash {
     						   "tiger128,3" => "Tiger128,3", "tiger160,3" => "Tiger160,3", "tiger192,3" => "Tiger192,3", 
     						   "whirlpool" => "Whirlpool");
     	
-    	// $this->functions = new Functions();
-    	
+    	// Sort out unimplemented algorithms
     	$implemented = hash_algos();
     	foreach (array_keys($this->allowed) as $allowed) {
     		if (!in_array($allowed, $implemented)) {
