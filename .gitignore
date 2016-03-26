@@ -11,6 +11,7 @@ gen/
 target/
 lib/cache/
 log/
+doc/
 
 ######################
 # Eclipse
