@@ -33,7 +33,7 @@ class IndexController extends BaseController {
 	
 	public function index(Request $request, Response $response) {
 		$hashInput = $this->session->get('hashInput', '');
-		$usedAlgorithm = $this->session->get('usedAlgorithm', '');
+		$usedAlgorithm = $this->session->get('usedAlgorithm', $this->hash->getDefault());
 		$hashedString = $this->session->get('hashedString', '');
 		
 		$params = array('hashInput' => $hashInput, 
