@@ -6,7 +6,7 @@
         {
             "name": "Daniel Nilsson",
             "email": "daniel.nilsson94@outlook.com",
-            "homepage": "http://www.dannils.se",
+            "homepage": "http://github.com/dannil",
             "role": "Developer"
         }
     ],
@@ -19,6 +19,7 @@
     	"slim/slim": "3.4.2",
     	"slim/http-cache": "0.3.0",
     	"slim/twig-view": "2.1.1",
+    	"akrabat/rka-slim-session-middleware": "2.0.0",
     	"monolog/monolog": "1.20.0"
     },
     "require-dev": {
