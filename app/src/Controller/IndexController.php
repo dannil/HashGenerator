@@ -10,24 +10,26 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 use Slim\App;
+use Slim\Container;
 use Slim\Views\Twig;
 use RKA\Session;
 
 class IndexController extends BaseController {
 	
+	private $ci;
+	
 	private $view;
 	private $session;
 	private $logger;
-	
 	private $hash;
 	
-	public function __construct(Twig $view, Session $session, LoggerInterface $logger) {
+	public function __construct(Container $ci) {
 		parent::__construct();
 		
-		$this->view = $view;
-		$this->logger = $logger;
-		$this->session = $session;
-		
+		$this->ci = $ci;
+		$this->view = $this->ci->get('view');
+		$this->session = $this->ci->get('session');
+		$this->logger = $this->ci->get('logger');
 		$this->hash = new Hash();
 	}
 	
@@ -44,7 +46,6 @@ class IndexController extends BaseController {
 		$params = parent::mergeParameters($params);
 		
 		$this->view->render($response, 'index.twig', $params);
-		
 		return $response;
 	}
 	
@@ -61,9 +62,9 @@ class IndexController extends BaseController {
 		$this->session->set('hashInput', $hashInput);
 		$this->session->set('usedAlgorithm', $usedAlgorithm);
 		$this->session->set('hashedString', $hashedString);
-
-		// Change to a dynamic path in the future
-		return $response->withRedirect('/HashGenerator/public', 302);
+		
+		$url = $this->ci->get('router')->pathFor('index');
+		return $response->withStatus(302)->withHeader('Location', $url);
 	}
 	
 }

@@ -45,6 +45,11 @@ $container['logger'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 
+// $container['HashGenerator\Controller\IndexController'] = function ($c) {
+//     return new HashGenerator\Controller\IndexController($c->get('view'), $c->get('session'), $c->get('logger'));
+// };
+
 $container['HashGenerator\Controller\IndexController'] = function ($c) {
-    return new HashGenerator\Controller\IndexController($c->get('view'), $c->get('session'), $c->get('logger'));
+	return new HashGenerator\Controller\IndexController($c);
 };
+
