@@ -24,6 +24,10 @@ $container['cache'] = function () {
 	return new \Slim\HttpCache\CacheProvider();
 };
 
+$container['session'] = function () {
+	return new \RKA\Session();
+};
+
 // -----------------------------------------------------------------------------
 // Service factories
 // -----------------------------------------------------------------------------
@@ -42,5 +46,5 @@ $container['logger'] = function ($c) {
 // -----------------------------------------------------------------------------
 
 $container['HashGenerator\Controller\IndexController'] = function ($c) {
-    return new HashGenerator\Controller\IndexController($c->get('view'), $c->get('logger'));
+    return new HashGenerator\Controller\IndexController($c->get('view'), $c->get('session'), $c->get('logger'));
 };

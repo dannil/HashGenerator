@@ -11,27 +11,30 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 use Slim\App;
 use Slim\Views\Twig;
+use RKA\Session;
 
 class IndexController extends BaseController {
 	
 	private $view;
+	private $session;
 	private $logger;
 	
 	private $hash;
 	
-	public function __construct(Twig $view, LoggerInterface $logger) {
+	public function __construct(Twig $view, Session $session, LoggerInterface $logger) {
 		parent::__construct();
 		
 		$this->view = $view;
 		$this->logger = $logger;
+		$this->session = $session;
 		
 		$this->hash = new Hash();
 	}
 	
 	public function index(Request $request, Response $response) {
-		$hashInput = (isset($_SESSION['hashInput']) ? $_SESSION['hashInput'] : '');
-		$usedAlgorithm = (isset($_SESSION['usedAlgorithm']) ? $_SESSION['usedAlgorithm'] : $this->hash->getDefault());
-		$hashedString = (isset($_SESSION['hashedString']) ? $_SESSION['hashedString'] : '');
+		$hashInput = $this->session->get('hashInput', '');
+		$usedAlgorithm = $this->session->get('usedAlgorithm', '');
+		$hashedString = $this->session->get('hashedString', '');
 		
 		$params = array('hashInput' => $hashInput, 
 			 			'algorithms' => $this->hash->getAllowed(), 
@@ -53,11 +56,11 @@ class IndexController extends BaseController {
 		$hashedString = $this->hash->getHash($hashInput, $usedAlgorithm);
 		
 		// For security purposes this is commented; only use for debug
-		// $this->logger->info("[" . $usedAlgorithm . "] " . $hashInput . ' --> ' . $hashedString);
+		//$this->logger->info("[" . $usedAlgorithm . "] " . $hashInput . ' --> ' . $hashedString);
 		
-		$_SESSION['hashInput'] = $hashInput;
-		$_SESSION['usedAlgorithm'] = $usedAlgorithm;
-		$_SESSION['hashedString'] = $hashedString;
+		$this->session->set('hashInput', $hashInput);
+		$this->session->set('usedAlgorithm', $usedAlgorithm);
+		$this->session->set('hashedString', $hashedString);
 
 		// Change to a dynamic path in the future
 		return $response->withRedirect('/HashGenerator/public', 302);
