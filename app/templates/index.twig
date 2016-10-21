@@ -19,9 +19,9 @@
 							<select name="usedAlgorithm">
 							{% for key, value in algorithms %}
 								{% if key == usedAlgorithm %}
-									<option selected="selected" value="{{ key }}">{{ value}}</option>
+									<option selected="selected" value="{{ key }}">{{ value }}</option>
 								{% else %}
-									<option value="{{ key }}">{{ value}}</option>
+									<option value="{{ key }}">{{ value }}</option>
 								{% endif %}
 							{% endfor %}
 							</select>
