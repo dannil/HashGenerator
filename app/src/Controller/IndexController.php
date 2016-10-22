@@ -16,20 +16,20 @@ use RKA\Session;
 
 class IndexController extends BaseController {
 	
-	private $ci;
+	private $container;
 	
 	private $view;
 	private $session;
 	private $logger;
 	private $hash;
 	
-	public function __construct(Container $ci) {
+	public function __construct(Container $container) {
 		parent::__construct();
 		
-		$this->ci = $ci;
-		$this->view = $this->ci->get('view');
-		$this->session = $this->ci->get('session');
-		$this->logger = $this->ci->get('logger');
+		$this->container = $container;
+		$this->view = $this->container->get('view');
+		$this->session = $this->container->get('session');
+		$this->logger = $this->container->get('logger');
 		$this->hash = new Hash();
 	}
 	
@@ -63,7 +63,7 @@ class IndexController extends BaseController {
 		$this->session->set('usedAlgorithm', $usedAlgorithm);
 		$this->session->set('hashedString', $hashedString);
 		
-		$url = $this->ci->get('router')->pathFor('index');
+		$url = $this->container->get('router')->pathFor('index');
 		return $response->withStatus(302)->withHeader('Location', $url);
 	}
 	
