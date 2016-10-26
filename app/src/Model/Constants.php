@@ -12,11 +12,11 @@ namespace HashGenerator\Model;
 class Constants {
     
     public function getVersion() {
-        return "1.2.0";
+        return "1.2.1";
     }
     
     public function getPublishDate() {
-    	return "2016-02-08";
+    	return "2016-10-26";
     }
     
 }
