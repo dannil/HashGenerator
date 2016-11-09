@@ -2,34 +2,32 @@
 
 namespace HashGenerator\Controller;
 
-use HashGenerator\Controller\BaseController;
 use HashGenerator\Model\Hash;
 
-use Psr\Log\LoggerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-use Slim\App;
 use Slim\Container;
 use Slim\Views\Twig;
 use RKA\Session;
 
-class IndexController extends BaseController {
+class IndexController {
 	
 	private $container;
 	
 	private $view;
 	private $session;
 	private $logger;
+	
 	private $hash;
 	
 	public function __construct(Container $container) {
-		parent::__construct();
-		
 		$this->container = $container;
+		
 		$this->view = $this->container->get('view');
 		$this->session = $this->container->get('session');
 		$this->logger = $this->container->get('logger');
+		
 		$this->hash = new Hash();
 	}
 	
@@ -42,8 +40,6 @@ class IndexController extends BaseController {
 			 			'algorithms' => $this->hash->getAllowed(), 
 						'usedAlgorithm' => $usedAlgorithm,
 						'hashedString' => $hashedString);
-		
-		$params = parent::mergeParameters($params);
 		
 		$this->view->render($response, 'index.twig', $params);
 		return $response;
