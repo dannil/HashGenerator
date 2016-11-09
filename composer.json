@@ -1,29 +1,28 @@
 {
-    "name": "dannil/HashGenerator",
-    "description": "An easy-to-use website application for generating hashes, with several different hashing algorithms",
-    "license": "Apache License 2.0",
-    "authors": [
-        {
-            "name": "Daniel Nilsson",
-            "email": "daniel.nilsson94@outlook.com",
-            "homepage": "http://github.com/dannil",
-            "role": "Developer"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "HashGenerator\\": "app/src"
-        }
-    },
-    "require": {
-    	"slim/slim": "3.4.2",
-    	"slim/http-cache": "0.3.0",
-    	"slim/twig-view": "2.1.1",
-    	"akrabat/rka-slim-session-middleware": "2.0.0",
-    	"monolog/monolog": "1.20.0"
-    },
-    "require-dev": {
-		"codacy/coverage": "dev-master",
-        "phpunit/phpunit": "5.4.6"
-    }
+	"name" : "dannil/HashGenerator",
+	"description" : "An easy-to-use website application for generating hashes, with several different hashing algorithms",
+	"license" : "Apache License 2.0",
+	"authors" : [{
+			"name" : "Daniel Nilsson",
+			"email" : "daniel.nilsson94@outlook.com",
+			"homepage" : "http://github.com/dannil",
+			"role" : "Developer"
+		}
+	],
+	"autoload" : {
+		"psr-4" : {
+			"HashGenerator\\" : "app/src"
+		}
+	},
+	"require" : {
+		"slim/slim" : "3.4.2",
+		"slim/http-cache" : "0.3.0",
+		"slim/twig-view" : "2.1.1",
+		"akrabat/rka-slim-session-middleware" : "2.0.0",
+		"monolog/monolog" : "1.20.0"
+	},
+	"require-dev" : {
+		"codacy/coverage" : "dev-master",
+		"phpunit/phpunit" : "5.4.6"
+	}
 }
