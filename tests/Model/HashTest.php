@@ -4,11 +4,13 @@ namespace HashGenerator\Test;
 
 use HashGenerator\Model\Hash;
 
-class HashTest extends \PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class HashTest extends TestCase {
 	
 	protected $hash;
 	
-	protected function setUp() {
+	protected function setUp(): void {
 		$this->hash = new Hash();
 	}
 	
