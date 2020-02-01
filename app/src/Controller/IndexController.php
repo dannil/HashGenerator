@@ -4,10 +4,11 @@ namespace HashGenerator\Controller;
 
 use HashGenerator\Model\Hash;
 
+use Psr\Container\ContainerInterface as ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-use Slim\Container;
+// use Slim\Container;
 use Slim\Views\Twig;
 use RKA\Session;
 
@@ -21,7 +22,7 @@ class IndexController {
 	
 	private $hash;
 	
-	public function __construct(Container $container) {
+	public function __construct(ContainerInterface $container) {
 		$this->container = $container;
 		
 		$this->view = $this->container->get('view');
