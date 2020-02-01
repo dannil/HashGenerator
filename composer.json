@@ -15,15 +15,18 @@
 		}
 	},
 	"require" : {
-		"akrabat/rka-slim-session-middleware" : "2.0.0",
-		"monolog/monolog" : "2.0.2",
-		"slim/slim" : "4.4.0",
-		"slim/http-cache" : "0.4.0",
-		"slim/twig-view" : "2.5.1",
-        "twig/extensions" : "1.5.0"
+		"akrabat/rka-slim-session-middleware": "2.0.0",
+		"monolog/monolog": "2.0.2",
+		"slim/slim": "4.4.0",
+		"slim/http-cache": "0.4.0",
+		"slim/twig-view": "2.5.1",
+        "twig/extensions": "1.5.0",
+		"slim/psr7": "1.0",
+		"php-di/php-di": "6.0"
 	},
 	"require-dev" : {
 		"codacy/coverage" : "dev-master",
 		"phpunit/phpunit" : "5.4.6"
 	}
 }
+
