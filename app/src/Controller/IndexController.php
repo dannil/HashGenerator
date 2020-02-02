@@ -23,6 +23,10 @@ class IndexController {
 	private $hash;
 	
 	public function __construct(ContainerInterface $container) {
+        //print_r($container);
+        
+        var_dump($container);
+	    
 		$this->container = $container;
 		
 		$this->view = $this->container->get('view');

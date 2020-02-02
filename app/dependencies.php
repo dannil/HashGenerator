@@ -63,6 +63,6 @@ $container->set('logger', function(ContainerInterface $container) {
 // };
 
 $container->set('HashGenerator\Controller\IndexController', function(ContainerInterface $container) {
-	return new HashGenerator\Controller\IndexController($c);
+	return new HashGenerator\Controller\IndexController($container);
 });
 
