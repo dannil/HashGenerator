@@ -24,6 +24,6 @@
 	},
 	"require-dev" : {
 		"codacy/coverage" : "dev-master",
-		"phpunit/phpunit" : "^8.5.2"
+		"phpunit/phpunit" : "^9.1.1"
 	}
 }
