@@ -2,8 +2,8 @@ language: php
 os: linux
 dist: xenial
 php:
-  - 7.2
   - 7.3
+  - 7.4
 git:
   depth: 99999
 branches:
